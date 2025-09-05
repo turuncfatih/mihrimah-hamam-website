@@ -9,18 +9,31 @@ export function HeroSection() {
     <section id="home" className="relative h-[70vh] bg-stone-100 flex items-center justify-center text-gray-800">
       <div className="absolute inset-0 bg-grid-stone-200 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
       <div className="relative z-10 text-center px-6">
-        <h2 className="text-5xl font-extrabold md:text-6xl text-stone-900">
-          {t('heroTitle')}
+        <h1 className="text-5xl font-extrabold md:text-6xl text-stone-900">
+          Tarihi Mihrimah Sultan Hamamı
+        </h1>
+        <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-stone-700">
+          Mimar Sinan Eseri | 16. Yüzyıl Osmanlı Mimarisi
         </h2>
         <p className="mt-4 text-lg max-w-2xl mx-auto text-stone-600">
-          {t('heroSubtitle')}
+          İstanbul'un tarihi yarımadasında, Mimar Sinan'ın 16. yüzyılda inşa ettiği otantik hamam deneyimini yaşayın. Geleneksel Osmanlı hamam kültürünün en güzel örneklerinden biri.
         </p>
-        <a 
-          className="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105" 
-          href="#services"
-        >
-          {t('exploreServices')}
-        </a>
+        <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105" 
+            href="#packages"
+            aria-label="Hamam paketlerini inceleyin"
+          >
+            Paketleri İncele
+          </a>
+          <a 
+            className="inline-block border-2 border-primary text-primary font-bold py-3 px-8 rounded-lg hover:bg-primary hover:text-white transition-all" 
+            href="#about"
+            aria-label="Hamam hakkında daha fazla bilgi alın"
+          >
+            Hakkımızda
+          </a>
+        </div>
       </div>
     </section>
   )
