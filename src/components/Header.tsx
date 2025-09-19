@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
+import { Logo } from './Logo'
 
 export function Header() {
   const { t, currentLocale, changeLocale, getCurrentLocale, locales } = useI18n()
@@ -16,20 +17,12 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <svg 
-            className="h-10 w-10 text-primary" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0v-4a2 2 0 012-2h10a2 2 0 012 2v4m-6 0v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth="2"
-            />
-          </svg>
-          <h1 className="text-2xl font-bold text-gray-800">{t('siteTitle')}</h1>
+          <Logo 
+            width={120} 
+            height={36} 
+            className="h-8 w-auto"
+            priority={true}
+          />
         </div>
         
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">

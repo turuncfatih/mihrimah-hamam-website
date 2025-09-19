@@ -1,6 +1,7 @@
 'use client'
 
 import { useI18n } from '@/contexts/I18nContext'
+import { Logo } from './Logo'
 
 export function HeroSection() {
   const { t } = useI18n()
@@ -9,10 +10,18 @@ export function HeroSection() {
     <section id="home" className="relative h-[70vh] bg-stone-100 flex items-center justify-center text-gray-800">
       <div className="absolute inset-0 bg-grid-stone-200 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
       <div className="relative z-10 text-center px-6">
-        <h1 className="text-5xl font-extrabold md:text-6xl text-stone-900">
+        <div className="mb-6 flex justify-center">
+          <Logo 
+            width={200} 
+            height={60} 
+            className="h-16 w-auto"
+            priority={true}
+          />
+        </div>
+        <h1 className="text-4xl font-extrabold md:text-5xl text-stone-900">
           Tarihi Mihrimah Sultan Hamamı
         </h1>
-        <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-stone-700">
+        <h2 className="mt-2 text-xl md:text-2xl font-semibold text-stone-700">
           Mimar Sinan Eseri | 16. Yüzyıl Osmanlı Mimarisi
         </h2>
         <p className="mt-4 text-lg max-w-2xl mx-auto text-stone-600">
