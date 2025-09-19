@@ -1,7 +1,7 @@
 // Hero Slider Images
 export const HERO_SLIDER_IMAGES = {
-  slide1: '/images/hero-slider/slide-1.jpg',
-  slide2: '/images/hero-slider/slide-2.jpg',
+  slide1: '/images/hero-slider/slider-1.jpg',
+  slide2: '/images/hero-slider/slider-3.jpg',
   slide3: '/images/hero-slider/slide-3.jpg',
 } as const
 
@@ -58,7 +58,7 @@ export const FALLBACK_IMAGES = {
 export const IMAGE_ALT_TEXTS = {
   hero: {
     slide1: 'Tarihi Mihrimah Sultan Hamamı ana görsel',
-    slide2: 'Hamamın mermer detayları ve mimari özellikler',
+    slide2: 'Hamamın iç mekanı ve mimari detayları',
     slide3: 'Hamamın kubbesi ve ışık süzmeleri',
   },
   features: {

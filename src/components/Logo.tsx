@@ -8,21 +8,21 @@ interface LogoProps {
 }
 
 export function Logo({ 
-  width = 200, 
-  height = 60, 
+  width = 300, 
+  height = 120, 
   className = '', 
   priority = false 
 }: LogoProps) {
   return (
     <div className={`relative ${className}`}>
       <Image
-        src="/images/logo/portrait-logo.png"
+        src="/images/logo/logos/logos.png"
         alt="Mihrimah Sultan Hamamı - Mimar Sinan Eseri"
         width={width}
         height={height}
         priority={priority}
-        className="object-contain"
-        sizes="(max-width: 768px) 120px, 200px"
+        className="object-cover w-full h-full"
+        sizes="(max-width: 768px) 80px, (max-width: 1024px) 100px, 120px"
       />
     </div>
   )

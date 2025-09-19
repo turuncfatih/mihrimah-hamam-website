@@ -17,7 +17,7 @@ export default function HomePage() {
       <StructuredData />
       <div className="relative min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow pt-16 sm:pt-20">
           <HeroSlider />
           <FeaturesSection />
           <AboutSection />
