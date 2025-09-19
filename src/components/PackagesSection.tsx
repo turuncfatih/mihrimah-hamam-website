@@ -64,6 +64,11 @@ export function PackagesSection() {
                   {t('currency')}
                 </span>
               </p>
+              <p className={`text-sm mb-4 ${
+                pkg.isFeatured ? 'text-white/80' : 'text-gray-500'
+              }`}>
+                {t('validPrices')} - {t('priceDate')}
+              </p>
               
               <ul className={`space-y-3 mb-8 flex-grow ${
                 pkg.isFeatured ? 'text-white' : 'text-gray-600'

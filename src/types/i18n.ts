@@ -58,6 +58,8 @@ export interface TranslationKeys {
   pashaPackage: string
   price: string
   currency: string
+  priceDate: string
+  validPrices: string
   traditionalKese: string
   foamMassage: string
   hamamUsage: string
