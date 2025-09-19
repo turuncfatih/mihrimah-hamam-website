@@ -52,7 +52,8 @@ export function Header() {
               className="bg-gray-100 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2 text-sm"
               onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
             >
-              <span>{t('language')}</span>
+              <span>{getCurrentLocale().flag}</span>
+              <span>{getCurrentLocale().name}</span>
               <svg 
                 className="w-4 h-4" 
                 fill="none" 
@@ -130,6 +131,27 @@ export function Header() {
             >
               {t('contact')}
             </a>
+            
+            {/* Mobile Language Selector */}
+            <div className="border-t border-gray-200 pt-2 mt-2">
+              <div className="px-3 py-2 text-sm font-medium text-gray-500 mb-2">
+                {t('language')}
+              </div>
+              {locales.map((locale) => (
+                <button
+                  key={locale.code}
+                  className={`block w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                    currentLocale === locale.code 
+                      ? 'text-primary font-medium bg-primary/10' 
+                      : 'text-gray-700 hover:text-primary hover:bg-gray-100'
+                  }`}
+                  onClick={() => handleLanguageChange(locale.code)}
+                >
+                  <span className="mr-2">{locale.flag}</span>
+                  {locale.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}

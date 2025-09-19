@@ -28,7 +28,7 @@ export function Footer() {
               height="100%" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade" 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.301594951111!2d28.95021861538357!3d41.01880997930001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caba21a833509d%3A0xf626b4f74d6f304!2sMihrimah%20Sultan%20Hamam%C4%B1!5e0!3m2!1str!2str!4v1678886453213!5m2!1str!2str" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.301594951111!2d28.9366667!3d41.0288889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caba16da8adf63%3A0xc20b8c89289f0873!2sMihrimah%20Sultan%20Hamam%C4%B1!5e0!3m2!1str!2str!4v1678886453213!5m2!1str!2str" 
               style={{ border: 0 }} 
               width="100%"
             />

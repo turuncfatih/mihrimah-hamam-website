@@ -6,7 +6,7 @@ export function WhatsAppButton() {
   const { t } = useI18n()
   
   const message = encodeURIComponent(t('whatsappMessage'))
-  const whatsappUrl = `https://wa.me/902125215459?text=${message}`
+  const whatsappUrl = `https://wa.me/902125230487?text=${message}`
   
   return (
     <a 

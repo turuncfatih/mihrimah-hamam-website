@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react'
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react'
 import { locales, type LocaleConfig, type TranslationKeys } from '@/types/i18n'
 
 // Türkçe (base language)
@@ -71,7 +71,7 @@ const tr: TranslationKeys = {
   
   contactInfo: 'İletişim',
   address: 'Fatih, Fevzi Paşa Cd. No:33, 34083 Fatih/İstanbul',
-  phone: 'Telefon: 0212 521 54 59',
+  phone: 'Telefon: 0212 523 04 87',
   email: 'E-posta: info@mihrimahsultanhamami.com',
       whatsappContact: 'WhatsApp ile iletişime geç',
     whatsappMessage: 'Fiyat hakkında bilgi alabilir miyim?',
@@ -146,7 +146,7 @@ const en: TranslationKeys = {
   
   contactInfo: 'Contact',
   address: 'Fatih, Fevzi Pasha St. No:33, 34083 Fatih/Istanbul',
-  phone: 'Phone: +90 212 521 54 59',
+  phone: 'Phone: +90 212 523 04 87',
   email: 'Email: info@mihrimahsultanhamami.com',
       whatsappContact: 'Contact via WhatsApp',
     whatsappMessage: 'Can I get information about prices?',
@@ -221,7 +221,7 @@ const es: TranslationKeys = {
   
   contactInfo: 'Contacto',
   address: 'Fatih, Calle Fevzi Pasha No:33, 34083 Fatih/Estambul',
-  phone: 'Teléfono: +90 212 521 54 59',
+  phone: 'Teléfono: +90 212 523 04 87',
   email: 'Correo: info@mihrimahsultanhamami.com',
       whatsappContact: 'Contactar vía WhatsApp',
     whatsappMessage: '¿Puedo obtener información sobre precios?',
@@ -296,7 +296,7 @@ const ar: TranslationKeys = {
   
   contactInfo: 'معلومات الاتصال',
   address: 'فاتح، شارع فوزي باشا رقم:33، 34083 فاتح/إسطنبول',
-  phone: 'الهاتف: +90 212 521 54 59',
+  phone: 'الهاتف: +90 212 523 04 87',
   email: 'البريد الإلكتروني: info@mihrimahsultanhamami.com',
       whatsappContact: 'تواصل عبر واتساب',
     whatsappMessage: 'هل يمكنني الحصول على معلومات حول الأسعار؟',
@@ -316,16 +316,57 @@ interface I18nContextType {
   getCurrentLocale: () => LocaleConfig
   t: (key: keyof TranslationKeys) => string
   locales: LocaleConfig[]
+  isInitialized: boolean
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [currentLocale, setCurrentLocale] = useState<string>('tr')
+  // Browser dilini otomatik algıla
+  const getBrowserLocale = useCallback(() => {
+    if (typeof window === 'undefined') return 'tr' // SSR için fallback
+    
+    const browserLang = navigator.language || navigator.languages?.[0] || 'tr'
+    const langCode = browserLang.split('-')[0] // 'en-US' -> 'en'
+    
+    // Desteklenen dilleri kontrol et
+    const supportedLocales = ['tr', 'en', 'es', 'ar']
+    if (supportedLocales.includes(langCode)) {
+      return langCode
+    }
+    
+    // Türkçe varsayılan
+    return 'tr'
+  }, [])
+
+  const [currentLocale, setCurrentLocale] = useState<string>('tr') // Default to Turkish
+  const [isInitialized, setIsInitialized] = useState(false)
+
+  // Initialize locale after component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !isInitialized) {
+      // LocalStorage'dan kaydedilmiş dili kontrol et
+      const savedLocale = localStorage.getItem('preferred-locale')
+      if (savedLocale && translations[savedLocale]) {
+        setCurrentLocale(savedLocale)
+      } else {
+        // Browser dilini algıla
+        const browserLocale = getBrowserLocale()
+        setCurrentLocale(browserLocale)
+        // İlk kez ziyaret ediyorsa seçilen dili localStorage'a kaydet
+        localStorage.setItem('preferred-locale', browserLocale)
+      }
+      setIsInitialized(true)
+    }
+  }, [getBrowserLocale])
 
   const changeLocale = useCallback((locale: string) => {
     if (translations[locale]) {
       setCurrentLocale(locale)
+      // LocalStorage'a kaydet
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('preferred-locale', locale)
+      }
     }
   }, [])
 
@@ -343,6 +384,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     getCurrentLocale,
     t,
     locales,
+    isInitialized,
   }
 
   return (

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { I18nProvider } from '@/contexts/I18nContext'
 import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { LanguageProvider } from '@/components/LanguageProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -113,6 +114,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-stone-50 text-gray-800`}>
         <GoogleAnalytics />
         <I18nProvider>
+          <LanguageProvider />
           {children}
         </I18nProvider>
       </body>
