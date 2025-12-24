@@ -4,6 +4,7 @@ import { Header } from '@/components/Header'
 import { HeroSlider } from '@/components/HeroSlider'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { AboutSection } from '@/components/AboutSection'
+import { VideoSection } from '@/components/VideoSection'
 import { PackagesSection } from '@/components/PackagesSection'
 import { GallerySection } from '@/components/GallerySection'
 import { ReviewsSection } from '@/components/ReviewsSection'
@@ -18,6 +19,7 @@ export default function HomePage() {
         <HeroSlider />
         <FeaturesSection />
         <AboutSection />
+        <VideoSection />
         <PackagesSection />
         <GallerySection />
         <ReviewsSection />

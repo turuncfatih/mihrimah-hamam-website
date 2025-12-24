@@ -1,6 +1,6 @@
 'use client'
 
-import { useI18n } from '@/lib/useI18n'
+import { useI18n } from '@/contexts/I18nContext'
 
 export function HeroSection() {
   const { t } = useI18n()

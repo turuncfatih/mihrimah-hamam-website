@@ -29,44 +29,44 @@ export function GallerySection() {
 
   const galleryImages = [
     {
-      src: GALLERY_IMAGES.marbleDetails,
-      fallbackSrc: FALLBACK_IMAGES.galleryMarble,
-      alt: IMAGE_ALT_TEXTS.gallery.marbleDetails,
+      src: GALLERY_IMAGES.image1,
+      fallbackSrc: GALLERY_IMAGES.image1,
+      alt: IMAGE_ALT_TEXTS.gallery.image1,
     },
     {
-      src: GALLERY_IMAGES.relaxationArea,
-      fallbackSrc: FALLBACK_IMAGES.galleryRelaxation,
-      alt: IMAGE_ALT_TEXTS.gallery.relaxationArea,
+      src: GALLERY_IMAGES.image2,
+      fallbackSrc: GALLERY_IMAGES.image2,
+      alt: IMAGE_ALT_TEXTS.gallery.image2,
     },
     {
-      src: GALLERY_IMAGES.traditionalTas,
-      fallbackSrc: FALLBACK_IMAGES.galleryTas,
-      alt: IMAGE_ALT_TEXTS.gallery.traditionalTas,
+      src: GALLERY_IMAGES.image3,
+      fallbackSrc: GALLERY_IMAGES.image3,
+      alt: IMAGE_ALT_TEXTS.gallery.image3,
     },
     {
-      src: GALLERY_IMAGES.gobekTasi,
-      fallbackSrc: FALLBACK_IMAGES.galleryGobek,
-      alt: IMAGE_ALT_TEXTS.gallery.gobekTasi,
+      src: GALLERY_IMAGES.image4,
+      fallbackSrc: GALLERY_IMAGES.image4,
+      alt: IMAGE_ALT_TEXTS.gallery.image4,
     },
     {
-      src: GALLERY_IMAGES.domeLight,
-      fallbackSrc: FALLBACK_IMAGES.galleryDome,
-      alt: IMAGE_ALT_TEXTS.gallery.domeLight,
+      src: GALLERY_IMAGES.image5,
+      fallbackSrc: GALLERY_IMAGES.image5,
+      alt: IMAGE_ALT_TEXTS.gallery.image5,
     },
     {
-      src: GALLERY_IMAGES.accessories,
-      fallbackSrc: FALLBACK_IMAGES.galleryAccessories,
-      alt: IMAGE_ALT_TEXTS.gallery.accessories,
+      src: GALLERY_IMAGES.image6,
+      fallbackSrc: GALLERY_IMAGES.image6,
+      alt: IMAGE_ALT_TEXTS.gallery.image6,
     },
     {
-      src: GALLERY_IMAGES.interiorView,
-      fallbackSrc: FALLBACK_IMAGES.galleryInterior,
-      alt: IMAGE_ALT_TEXTS.gallery.interiorView,
+      src: GALLERY_IMAGES.image7,
+      fallbackSrc: GALLERY_IMAGES.image7,
+      alt: IMAGE_ALT_TEXTS.gallery.image7,
     },
     {
-      src: GALLERY_IMAGES.architecturalDetail,
-      fallbackSrc: FALLBACK_IMAGES.galleryArchitectural,
-      alt: IMAGE_ALT_TEXTS.gallery.architecturalDetail,
+      src: GALLERY_IMAGES.image8,
+      fallbackSrc: GALLERY_IMAGES.image8,
+      alt: IMAGE_ALT_TEXTS.gallery.image8,
     },
   ]
 

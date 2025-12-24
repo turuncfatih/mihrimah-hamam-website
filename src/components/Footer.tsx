@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer id="contact" className="bg-stone-800 text-stone-300 py-12">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-3 gap-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl font-bold mb-4 text-white">{t('contactInfo')}</h2>
             <p className="mb-4">{t('address')}</p>
@@ -20,6 +20,30 @@ export function Footer() {
               </svg>
               {t('whatsappContact')}
             </button>
+          </div>
+          
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl font-bold mb-4 text-white">{t('workingHours')}</h2>
+            <div className="space-y-4">
+              <div className="bg-stone-700/50 p-4 rounded-lg">
+                <h3 className="font-bold text-lg mb-2 text-white">{t('menSection')}</h3>
+                <p className="text-stone-300">
+                  <span className="font-semibold">{t('openingHours')}:</span> 07:00
+                </p>
+                <p className="text-stone-300">
+                  <span className="font-semibold">{t('closingHours')}:</span> 23:00
+                </p>
+              </div>
+              <div className="bg-stone-700/50 p-4 rounded-lg">
+                <h3 className="font-bold text-lg mb-2 text-white">{t('womenSection')}</h3>
+                <p className="text-stone-300">
+                  <span className="font-semibold">{t('openingHours')}:</span> 09:00
+                </p>
+                <p className="text-stone-300">
+                  <span className="font-semibold">{t('closingHours')}:</span> 20:00
+                </p>
+              </div>
+            </div>
           </div>
           
           <div className="rounded-lg overflow-hidden shadow-lg h-80">

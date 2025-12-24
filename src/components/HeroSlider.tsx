@@ -10,6 +10,16 @@ export function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
+  // Vimeo player script'ini yükle
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://player.vimeo.com/api/player.js'
+    script.async = true
+    if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+      document.body.appendChild(script)
+    }
+  }, [])
+
   const slides: SlideItem[] = [
     {
       id: '1',
@@ -18,6 +28,8 @@ export function HeroSlider() {
       image: HERO_SLIDER_IMAGES.slide1,
       fallbackImage: FALLBACK_IMAGES.heroSlide1,
       alt: IMAGE_ALT_TEXTS.hero.slide1,
+      videoUrl: 'https://player.vimeo.com/video/1149173872?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1',
+      isVideo: true,
     },
     {
       id: '2',
@@ -63,7 +75,7 @@ export function HeroSlider() {
 
     const interval = setInterval(() => {
       nextSlide()
-    }, 5000)
+    }, 60000) // 1 dakika (60 saniye)
 
     return () => clearInterval(interval)
   }, [isAutoPlaying, nextSlide])
@@ -82,35 +94,50 @@ export function HeroSlider() {
               index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {/* Background image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ 
-                backgroundImage: `url(${slide.image})`,
-                backgroundImage: `url(${slide.fallbackImage})` // Fallback için
-              }}
-            >
-              {/* Overlay for better text readability */}
-              <div className="absolute inset-0 bg-black/30" />
-            </div>
-            
-            {/* Content */}
-            <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
-              <div className="max-w-4xl">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
-                  {slide.title}
-                </h2>
-                <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8 drop-shadow-md">
-                  {slide.subtitle}
-                </p>
-                <a 
-                  className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg"
-                  href="#services"
-                >
-                  {t('exploreServices')}
-                </a>
+            {/* Background video or image */}
+            {slide.isVideo && slide.videoUrl ? (
+              <div className="absolute inset-0">
+                <iframe
+                  src={slide.videoUrl}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  style={{ pointerEvents: 'none' }}
+                />
               </div>
-            </div>
+            ) : (
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ 
+                  backgroundImage: `url(${slide.image})`,
+                  backgroundImage: `url(${slide.fallbackImage})` // Fallback için
+                }}
+              >
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/30" />
+              </div>
+            )}
+            
+            {/* Content - Only show for non-video slides */}
+            {!slide.isVideo && (
+              <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
+                <div className="max-w-4xl">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+                    {slide.title}
+                  </h2>
+                  <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8 drop-shadow-md">
+                    {slide.subtitle}
+                  </p>
+                  <a 
+                    className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-lg"
+                    href="#services"
+                  >
+                    {t('exploreServices')}
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -57,6 +57,9 @@ const tr: TranslationKeys = {
   ourGallery: 'Galerimiz',
   gallerySubtitle: 'Hamamımızın büyülü atmosferini ve otantik detaylarını keşfedin. Fotoğraflarla tarihin ve huzurun iç içe geçtiği bu eşsiz mekanı daha yakından tanıyın.',
   
+  videoTitle: 'Tanıtım Videosu',
+  videoSubtitle: 'Tarihi Mihrimah Sultan Hamamı\'nın büyülü atmosferini ve geleneksel hamam deneyimini videomuzda keşfedin.',
+  
   customerReviews: 'Müşteri Yorumları',
   review1: 'Kesinlikle inanılmaz bir deneyimdi. Hamamın tarihi dokusu ve personelin ilgisi harikaydı. Kendimi yenilenmiş hissediyorum.',
   review1Author: 'Ayşe K.',
@@ -69,9 +72,14 @@ const tr: TranslationKeys = {
   address: 'Fatih, Fevzi Paşa Cd. No:33, 34083 Fatih/İstanbul',
   phone: 'Telefon: 0212 521 54 59',
   email: 'E-posta: info@mihrimahsultanhamami.com',
-      whatsappContact: 'WhatsApp ile iletişime geç',
-    whatsappMessage: 'Fiyat hakkında bilgi alabilir miyim?',
-    copyright: '© 2024 Tarihi Mihrimah Sultan Hamamı. Tüm hakları saklıdır.',
+  whatsappContact: 'WhatsApp ile iletişime geç',
+  whatsappMessage: 'Fiyat hakkında bilgi alabilir miyim?',
+  workingHours: 'Çalışma Saatleri',
+  menSection: 'Erkekler Bölümü',
+  womenSection: 'Kadınlar Bölümü',
+  openingHours: 'Açılış',
+  closingHours: 'Kapanış',
+  copyright: '© 2024 Tarihi Mihrimah Sultan Hamamı. Tüm hakları saklıdır.',
 }
 
 // İngilizce
@@ -129,6 +137,9 @@ const en: TranslationKeys = {
   ourGallery: 'Our Gallery',
   gallerySubtitle: 'Discover the magical atmosphere and authentic details of our bath. Get to know this unique venue where history and tranquility intertwine more closely through photographs.',
   
+  videoTitle: 'Promotional Video',
+  videoSubtitle: 'Discover the magical atmosphere and traditional bath experience of the Historical Mihrimah Sultan Bath in our video.',
+  
   customerReviews: 'Customer Reviews',
   review1: 'It was absolutely an incredible experience. The historical texture of the bath and the attention of the staff were wonderful. I feel renewed.',
   review1Author: 'Ayse K.',
@@ -141,9 +152,14 @@ const en: TranslationKeys = {
   address: 'Fatih, Fevzi Pasha St. No:33, 34083 Fatih/Istanbul',
   phone: 'Phone: +90 212 521 54 59',
   email: 'Email: info@mihrimahsultanhamami.com',
-      whatsappContact: 'Contact via WhatsApp',
-    whatsappMessage: 'Can I get information about prices?',
-    copyright: '© 2024 Historical Mihrimah Sultan Bath. All rights reserved.',
+  whatsappContact: 'Contact via WhatsApp',
+  whatsappMessage: 'Can I get information about prices?',
+  workingHours: 'Working Hours',
+  menSection: 'Men\'s Section',
+  womenSection: 'Women\'s Section',
+  openingHours: 'Opening',
+  closingHours: 'Closing',
+  copyright: '© 2024 Historical Mihrimah Sultan Bath. All rights reserved.',
 }
 
 // İspanyolca
@@ -201,6 +217,9 @@ const es: TranslationKeys = {
   ourGallery: 'Nuestra Galería',
   gallerySubtitle: 'Descubre la atmósfera mágica y los detalles auténticos de nuestro baño. Conoce más de cerca este lugar único donde la historia y la tranquilidad se entrelazan a través de fotografías.',
   
+  videoTitle: 'Video Promocional',
+  videoSubtitle: 'Descubre la atmósfera mágica y la experiencia tradicional del baño del Baño Histórico Mihrimah Sultan en nuestro video.',
+  
   customerReviews: 'Reseñas de Clientes',
   review1: 'Fue absolutamente una experiencia increíble. La textura histórica del baño y la atención del personal fueron maravillosas. Me siento renovado.',
   review1Author: 'Ayse K.',
@@ -213,9 +232,14 @@ const es: TranslationKeys = {
   address: 'Fatih, Calle Fevzi Pasha No:33, 34083 Fatih/Estambul',
   phone: 'Teléfono: +90 212 521 54 59',
   email: 'Correo: info@mihrimahsultanhamami.com',
-      whatsappContact: 'Contactar vía WhatsApp',
-    whatsappMessage: '¿Puedo obtener información sobre precios?',
-    copyright: '© 2024 Baño Histórico Mihrimah Sultan. Todos los derechos reservados.',
+  whatsappContact: 'Contactar vía WhatsApp',
+  whatsappMessage: '¿Puedo obtener información sobre precios?',
+  workingHours: 'Horario de Atención',
+  menSection: 'Sección de Hombres',
+  womenSection: 'Sección de Mujeres',
+  openingHours: 'Apertura',
+  closingHours: 'Cierre',
+  copyright: '© 2024 Baño Histórico Mihrimah Sultan. Todos los derechos reservados.',
 }
 
 // Arapça
@@ -273,6 +297,9 @@ const ar: TranslationKeys = {
   ourGallery: 'معرضنا',
   gallerySubtitle: 'اكتشف الجو السحري والتفاصيل الأصيلة لحمامنا. تعرف على هذا المكان الفريد حيث يتداخل التاريخ والهدوء بشكل أوثق من خلال الصور.',
   
+  videoTitle: 'فيديو تعريفي',
+  videoSubtitle: 'اكتشف الجو السحري وتجربة الحمام التقليدية لحمام مهرماه سلطان التاريخي في فيديونا.',
+  
   customerReviews: 'آراء العملاء',
   review1: 'كانت بالتأكيد تجربة لا تصدق. النسيج التاريخي للحمام واهتمام الموظفين كان رائعاً. أشعر بالتجديد.',
   review1Author: 'عائشة ك.',
@@ -285,9 +312,14 @@ const ar: TranslationKeys = {
   address: 'فاتح، شارع فوزي باشا رقم:33، 34083 فاتح/إسطنبول',
   phone: 'الهاتف: +90 212 521 54 59',
   email: 'البريد الإلكتروني: info@mihrimahsultanhamami.com',
-      whatsappContact: 'تواصل عبر واتساب',
-    whatsappMessage: 'هل يمكنني الحصول على معلومات حول الأسعار؟',
-    copyright: '© 2024 حمام مهرماه سلطان التاريخي. جميع الحقوق محفوظة.',
+  whatsappContact: 'تواصل عبر واتساب',
+  whatsappMessage: 'هل يمكنني الحصول على معلومات حول الأسعار؟',
+  workingHours: 'ساعات العمل',
+  menSection: 'قسم الرجال',
+  womenSection: 'قسم النساء',
+  openingHours: 'الفتح',
+  closingHours: 'الإغلاق',
+  copyright: '© 2024 حمام مهرماه سلطان التاريخي. جميع الحقوق محفوظة.',
 }
 
 const translations: Record<string, TranslationKeys> = {

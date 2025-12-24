@@ -21,14 +21,14 @@ export const ABOUT_IMAGES = {
 
 // Gallery Section Images
 export const GALLERY_IMAGES = {
-  marbleDetails: '/images/gallery/te2.jpg',
-  relaxationArea: '/images/gallery/test-mihri.jpg',
-  traditionalTas: '/images/gallery/gobektas.jpg',
-  gobekTasi: '/images/gallery/te2.jpg',
-  domeLight: '/images/gallery/te2.jpg',
-  accessories: '/images/gallery/te2.jpg',
-  interiorView: '/images/gallery/te2.jpg',
-  architecturalDetail: '/images/gallery/te2.jpg',
+  image1: '/images/hamam-photos/image00005.jpeg',
+  image2: '/images/hamam-photos/image00008.jpeg',
+  image3: '/images/hamam-photos/image00015.jpeg',
+  image4: '/images/hamam-photos/image00016.jpeg',
+  image5: '/images/hamam-photos/image00022.jpeg',
+  image6: '/images/hamam-photos/image00023.jpeg',
+  image7: '/images/hamam-photos/image00032.jpeg',
+  image8: '/images/hamam-photos/image00039.jpeg',
 } as const
 
 // Packages Section Images
@@ -72,14 +72,14 @@ export const IMAGE_ALT_TEXTS = {
     specialMassage: 'Özel masaj terapileri',
   },
   gallery: {
-    marbleDetails: 'Hamamın mermer detayları',
-    relaxationArea: 'Hamamın dinlenme alanı',
-    traditionalTas: 'Geleneksel hamam tası ve sabun',
-    gobekTasi: 'Hamamın göbek taşı detayı',
-    domeLight: 'Hamamın kubbesi ve ışık süzmeleri',
-    accessories: 'Hamam aksesuarları ve peştemaller',
-    interiorView: 'Loş ışıkta hamamın iç görünümü',
-    architecturalDetail: 'Mimar Sinan eserinin mimari detayı',
+    image1: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 1',
+    image2: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 2',
+    image3: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 3',
+    image4: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 4',
+    image5: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 5',
+    image6: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 6',
+    image7: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 7',
+    image8: 'Tarihi Mihrimah Sultan Hamamı - Fotoğraf 8',
   },
   packages: {
     traditionalPackage: 'Geleneksel Hamam Paketi görseli',

@@ -71,6 +71,10 @@ export interface TranslationKeys {
   ourGallery: string
   gallerySubtitle: string
   
+  // Video Section
+  videoTitle: string
+  videoSubtitle: string
+  
   // Reviews Section
   customerReviews: string
   review1: string
@@ -85,7 +89,12 @@ export interface TranslationKeys {
   address: string
   phone: string
   email: string
-      whatsappContact: string
-    whatsappMessage: string
-    copyright: string
+  whatsappContact: string
+  whatsappMessage: string
+  workingHours: string
+  menSection: string
+  womenSection: string
+  openingHours: string
+  closingHours: string
+  copyright: string
 }

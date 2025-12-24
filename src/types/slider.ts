@@ -5,6 +5,8 @@ export interface SlideItem {
   image: string
   fallbackImage: string
   alt: string
+  videoUrl?: string
+  isVideo?: boolean
 }
 
 export interface SliderProps {
