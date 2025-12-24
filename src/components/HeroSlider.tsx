@@ -110,8 +110,7 @@ export function HeroSlider() {
               <div 
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{ 
-                  backgroundImage: `url(${slide.image})`,
-                  backgroundImage: `url(${slide.fallbackImage})` // Fallback için
+                  backgroundImage: `url(${slide.fallbackImage || slide.image})`
                 }}
               >
                 {/* Overlay for better text readability */}

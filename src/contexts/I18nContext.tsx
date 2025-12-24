@@ -53,6 +53,7 @@ const tr: TranslationKeys = {
   medicalBackMassage: 'Medikal Sırt Masajı',
   medicalDuration: '30 dk',
   refreshments: 'İkramlar (Şerbet, Meyve)',
+  bookReservation: 'Rezervasyon Yap',
   
   ourGallery: 'Galerimiz',
   gallerySubtitle: 'Hamamımızın büyülü atmosferini ve otantik detaylarını keşfedin. Fotoğraflarla tarihin ve huzurun iç içe geçtiği bu eşsiz mekanı daha yakından tanıyın.',

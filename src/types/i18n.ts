@@ -66,6 +66,7 @@ export interface TranslationKeys {
   medicalBackMassage: string
   medicalDuration: string
   refreshments: string
+  bookReservation: string
   
   // Gallery Section
   ourGallery: string
