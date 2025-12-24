@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { I18nProvider } from '@/contexts/I18nContext'
 
@@ -52,6 +53,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-stone-50 text-gray-800`}>
+        <Script 
+          src="https://player.vimeo.com/api/player.js" 
+          strategy="beforeInteractive"
+        />
         <I18nProvider>
           {children}
         </I18nProvider>

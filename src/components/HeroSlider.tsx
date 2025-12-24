@@ -9,14 +9,38 @@ export function HeroSlider() {
   const { t } = useI18n()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [vimeoScriptLoaded, setVimeoScriptLoaded] = useState(false)
 
-  // Vimeo player script'ini yükle
+  // Vimeo player script'inin yüklenmesini kontrol et
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://player.vimeo.com/api/player.js'
-    script.async = true
-    if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
-      document.body.appendChild(script)
+    // Script zaten yüklü mü kontrol et
+    const checkScript = () => {
+      if ((window as any).Vimeo?.Player || document.querySelector('script[src*="player.vimeo.com"]')) {
+        setVimeoScriptLoaded(true)
+        return true
+      }
+      return false
+    }
+
+    // İlk kontrol
+    if (checkScript()) return
+
+    // Script yüklenene kadar kontrol et
+    const interval = setInterval(() => {
+      if (checkScript()) {
+        clearInterval(interval)
+      }
+    }, 100)
+
+    // 2 saniye sonra timeout
+    const timeout = setTimeout(() => {
+      clearInterval(interval)
+      setVimeoScriptLoaded(true) // Timeout olsa bile video göster
+    }, 2000)
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(timeout)
     }
   }, [])
 
@@ -28,7 +52,7 @@ export function HeroSlider() {
       image: HERO_SLIDER_IMAGES.slide1,
       fallbackImage: FALLBACK_IMAGES.heroSlide1,
       alt: IMAGE_ALT_TEXTS.hero.slide1,
-      videoUrl: 'https://player.vimeo.com/video/1149173872?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1',
+      videoUrl: 'https://player.vimeo.com/video/1149173872?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1&preload=auto',
       isVideo: true,
     },
     {
@@ -96,14 +120,24 @@ export function HeroSlider() {
           >
             {/* Background video or image */}
             {slide.isVideo && slide.videoUrl ? (
-              <div className="absolute inset-0">
+              <div className="absolute inset-0 z-0 overflow-hidden bg-black">
                 <iframe
                   src={slide.videoUrl}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full"
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
-                  style={{ pointerEvents: 'none' }}
+                  loading="eager"
+                  style={{ 
+                    pointerEvents: 'none', 
+                    zIndex: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transform: 'scale(1.1)',
+                    minWidth: '100%',
+                    minHeight: '100%'
+                  }}
                 />
               </div>
             ) : (
@@ -148,11 +182,11 @@ export function HeroSlider() {
           pauseAutoPlay()
           setTimeout(resumeAutoPlay, 10000)
         }}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full backdrop-blur-md transition-all hover:scale-110 shadow-2xl border-2 border-white/30"
         aria-label="Previous slide"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
@@ -162,16 +196,16 @@ export function HeroSlider() {
           pauseAutoPlay()
           setTimeout(resumeAutoPlay, 10000)
         }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all hover:scale-110"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full backdrop-blur-md transition-all hover:scale-110 shadow-2xl border-2 border-white/30"
         aria-label="Next slide"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
       {/* Dots Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex space-x-3">
         {slides.map((_, index) => (
           <button
             key={index}
