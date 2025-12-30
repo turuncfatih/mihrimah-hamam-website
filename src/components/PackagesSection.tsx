@@ -8,7 +8,7 @@ export function PackagesSection() {
   const packages = [
     {
       title: t('traditionalPackage'),
-      price: '450',
+      price: '1000',
       features: [
         t('traditionalKese'),
         t('foamMassage'),
@@ -18,21 +18,20 @@ export function PackagesSection() {
     },
     {
       title: t('mihrimahPackage'),
-      price: '750',
+      price: '1500',
       features: [
+        t('massageOilCoffee'),
         t('traditionalKese'),
-        `${t('aromatherapyMassage')} (${t('aromatherapyDuration')})`,
+        t('foamMassage'),
+        t('clayMask'),
         t('hamamUsage'),
-        t('refreshments'),
       ],
       isFeatured: true,
     },
     {
-      title: t('pashaPackage'),
-      price: '600',
+      title: 'Standard Hamam',
+      price: '450',
       features: [
-        t('traditionalKese'),
-        `${t('medicalBackMassage')} (${t('medicalDuration')})`,
         t('hamamUsage'),
       ],
       isFeatured: false,

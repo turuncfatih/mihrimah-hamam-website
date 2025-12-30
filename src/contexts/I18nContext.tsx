@@ -53,6 +53,8 @@ const tr: TranslationKeys = {
   medicalBackMassage: 'Medikal Sırt Masajı',
   medicalDuration: '30 dk',
   refreshments: 'İkramlar (Şerbet, Meyve)',
+  massageOilCoffee: 'Kahve Yağı Masajı',
+  clayMask: 'Kil Maskesi',
   bookReservation: 'Rezervasyon Yap',
   
   ourGallery: 'Galerimiz',
@@ -133,6 +135,8 @@ const en: TranslationKeys = {
   medicalBackMassage: 'Medical Back Massage',
   medicalDuration: '30 min',
   refreshments: 'Refreshments (Sherbet, Fruit)',
+  massageOilCoffee: 'Coffee Oil Massage',
+  clayMask: 'Clay Mask',
   bookReservation: 'Book Reservation',
   
   ourGallery: 'Our Gallery',
@@ -213,6 +217,8 @@ const es: TranslationKeys = {
   medicalBackMassage: 'Masaje Médico de Espalda',
   medicalDuration: '30 min',
   refreshments: 'Refrigerios (Sorbete, Fruta)',
+  massageOilCoffee: 'Masaje con Aceite de Café',
+  clayMask: 'Máscara de Arcilla',
   bookReservation: 'Reservar',
   
   ourGallery: 'Nuestra Galería',
@@ -293,6 +299,8 @@ const ar: TranslationKeys = {
   medicalBackMassage: 'تدليك الظهر الطبي',
   medicalDuration: '30 دقيقة',
   refreshments: 'المشروبات (الشراب، الفواكه)',
+  massageOilCoffee: 'تدليك بزيت القهوة',
+  clayMask: 'قناع الطين',
   bookReservation: 'احجز الآن',
   
   ourGallery: 'معرضنا',

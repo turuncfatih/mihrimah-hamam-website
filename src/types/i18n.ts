@@ -66,6 +66,8 @@ export interface TranslationKeys {
   medicalBackMassage: string
   medicalDuration: string
   refreshments: string
+  massageOilCoffee: string
+  clayMask: string
   bookReservation: string
   
   // Gallery Section
