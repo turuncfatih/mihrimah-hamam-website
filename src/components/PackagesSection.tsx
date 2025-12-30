@@ -18,7 +18,7 @@ export function PackagesSection() {
     },
     {
       title: t('mihrimahPackage'),
-      price: '1500',
+      price: '1600',
       features: [
         t('massageOilCoffee'),
         t('traditionalKese'),
@@ -30,7 +30,7 @@ export function PackagesSection() {
     },
     {
       title: 'Standard Hamam',
-      price: '450',
+      price: '600',
       features: [
         t('hamamUsage'),
       ],
