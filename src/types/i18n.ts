@@ -53,6 +53,8 @@ export interface TranslationKeys {
   
   // Packages Section
   specialPackages: string
+  menPackages: string
+  womenPackages: string
   traditionalPackage: string
   mihrimahPackage: string
   pashaPackage: string
@@ -67,6 +69,7 @@ export interface TranslationKeys {
   medicalDuration: string
   refreshments: string
   massageOilCoffee: string
+  oilMassage: string
   clayMask: string
   bookReservation: string
   

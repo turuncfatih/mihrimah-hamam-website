@@ -40,6 +40,8 @@ const tr: TranslationKeys = {
   specialMassageDesc: 'Aromaterapiden medikal masaja, ruhunuzu ve bedeninizi dinlendirecek çeşitli masaj seçeneklerimizle rahatlayın.',
   
   specialPackages: 'Özel Paketler',
+  menPackages: 'Erkekler',
+  womenPackages: 'Kadınlar',
   traditionalPackage: 'Geleneksel Hamam Paketi',
   mihrimahPackage: 'Mihrimah Sultan Paketi',
   pashaPackage: 'Paşa Paketi',
@@ -54,6 +56,7 @@ const tr: TranslationKeys = {
   medicalDuration: '30 dk',
   refreshments: 'İkramlar (Şerbet, Meyve)',
   massageOilCoffee: 'Kahve Yağı Masajı',
+  oilMassage: 'Yağ Masajı',
   clayMask: 'Kil Maskesi',
   bookReservation: 'Rezervasyon Yap',
   
@@ -122,6 +125,8 @@ const en: TranslationKeys = {
   specialMassageDesc: 'Relax your soul and body with various massage options from aromatherapy to medical massage.',
   
   specialPackages: 'Special Packages',
+  menPackages: 'Men',
+  womenPackages: 'Women',
   traditionalPackage: 'Traditional Bath Package',
   mihrimahPackage: 'Mihrimah Sultan Package',
   pashaPackage: 'Pasha Package',
@@ -136,6 +141,7 @@ const en: TranslationKeys = {
   medicalDuration: '30 min',
   refreshments: 'Refreshments (Sherbet, Fruit)',
   massageOilCoffee: 'Coffee Oil Massage',
+  oilMassage: 'Oil Massage',
   clayMask: 'Clay Mask',
   bookReservation: 'Book Reservation',
   
@@ -204,6 +210,8 @@ const es: TranslationKeys = {
   specialMassageDesc: 'Relaja tu alma y cuerpo con varias opciones de masaje desde aromaterapia hasta masaje médico.',
   
   specialPackages: 'Paquetes Especiales',
+  menPackages: 'Hombres',
+  womenPackages: 'Mujeres',
   traditionalPackage: 'Paquete de Baño Tradicional',
   mihrimahPackage: 'Paquete Mihrimah Sultan',
   pashaPackage: 'Paquete Pasha',
@@ -218,6 +226,7 @@ const es: TranslationKeys = {
   medicalDuration: '30 min',
   refreshments: 'Refrigerios (Sorbete, Fruta)',
   massageOilCoffee: 'Masaje con Aceite de Café',
+  oilMassage: 'Masaje con Aceite',
   clayMask: 'Máscara de Arcilla',
   bookReservation: 'Reservar',
   
@@ -286,6 +295,8 @@ const ar: TranslationKeys = {
   specialMassageDesc: 'استرخ روحك وجسدك بخيارات تدليك متنوعة من العلاج بالروائح إلى التدليك الطبي.',
   
   specialPackages: 'الباقات الخاصة',
+  menPackages: 'الرجال',
+  womenPackages: 'النساء',
   traditionalPackage: 'باقة الحمام التقليدية',
   mihrimahPackage: 'باقة مهرماه سلطان',
   pashaPackage: 'باقة الباشا',
@@ -300,6 +311,7 @@ const ar: TranslationKeys = {
   medicalDuration: '30 دقيقة',
   refreshments: 'المشروبات (الشراب، الفواكه)',
   massageOilCoffee: 'تدليك بزيت القهوة',
+  oilMassage: 'تدليك بالزيت',
   clayMask: 'قناع الطين',
   bookReservation: 'احجز الآن',
   
