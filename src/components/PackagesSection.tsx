@@ -54,7 +54,7 @@ export function PackagesSection() {
       title: t('mihrimahPackage'),
       price: '1600',
       features: [
-        t('massageOilCoffee'),
+        t('coffeeOrOilMassage'),
         t('traditionalKese'),
         t('foamMassage'),
         t('clayMask'),

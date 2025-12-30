@@ -57,6 +57,7 @@ const tr: TranslationKeys = {
   refreshments: 'İkramlar (Şerbet, Meyve)',
   massageOilCoffee: 'Kahve Yağı Masajı',
   oilMassage: 'Yağ Masajı',
+  coffeeOrOilMassage: 'Kahve veya Yağ Masajı',
   clayMask: 'Kil Maskesi',
   bookReservation: 'Rezervasyon Yap',
   
@@ -142,6 +143,7 @@ const en: TranslationKeys = {
   refreshments: 'Refreshments (Sherbet, Fruit)',
   massageOilCoffee: 'Coffee Oil Massage',
   oilMassage: 'Oil Massage',
+  coffeeOrOilMassage: 'Coffee or Oil Massage',
   clayMask: 'Clay Mask',
   bookReservation: 'Book Reservation',
   
@@ -227,6 +229,7 @@ const es: TranslationKeys = {
   refreshments: 'Refrigerios (Sorbete, Fruta)',
   massageOilCoffee: 'Masaje con Aceite de Café',
   oilMassage: 'Masaje con Aceite',
+  coffeeOrOilMassage: 'Masaje con Café o Aceite',
   clayMask: 'Máscara de Arcilla',
   bookReservation: 'Reservar',
   
@@ -312,6 +315,7 @@ const ar: TranslationKeys = {
   refreshments: 'المشروبات (الشراب، الفواكه)',
   massageOilCoffee: 'تدليك بزيت القهوة',
   oilMassage: 'تدليك بالزيت',
+  coffeeOrOilMassage: 'تدليك بالقهوة أو الزيت',
   clayMask: 'قناع الطين',
   bookReservation: 'احجز الآن',
   

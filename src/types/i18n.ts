@@ -70,6 +70,7 @@ export interface TranslationKeys {
   refreshments: string
   massageOilCoffee: string
   oilMassage: string
+  coffeeOrOilMassage: string
   clayMask: string
   bookReservation: string
   
