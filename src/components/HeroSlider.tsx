@@ -9,40 +9,6 @@ export function HeroSlider() {
   const { t } = useI18n()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [vimeoScriptLoaded, setVimeoScriptLoaded] = useState(false)
-
-  // Vimeo player script'inin yüklenmesini kontrol et
-  useEffect(() => {
-    // Script zaten yüklü mü kontrol et
-    const checkScript = () => {
-      if ((window as any).Vimeo?.Player || document.querySelector('script[src*="player.vimeo.com"]')) {
-        setVimeoScriptLoaded(true)
-        return true
-      }
-      return false
-    }
-
-    // İlk kontrol
-    if (checkScript()) return
-
-    // Script yüklenene kadar kontrol et
-    const interval = setInterval(() => {
-      if (checkScript()) {
-        clearInterval(interval)
-      }
-    }, 100)
-
-    // 2 saniye sonra timeout
-    const timeout = setTimeout(() => {
-      clearInterval(interval)
-      setVimeoScriptLoaded(true) // Timeout olsa bile video göster
-    }, 2000)
-
-    return () => {
-      clearInterval(interval)
-      clearTimeout(timeout)
-    }
-  }, [])
 
   const slides: SlideItem[] = [
     {
@@ -52,7 +18,7 @@ export function HeroSlider() {
       image: HERO_SLIDER_IMAGES.slide1,
       fallbackImage: FALLBACK_IMAGES.heroSlide1,
       alt: IMAGE_ALT_TEXTS.hero.slide1,
-      videoUrl: 'https://player.vimeo.com/video/1149173872?badge=0&autopause=0&player_id=0&app_id=58479&background=1&muted=1&autoplay=1&loop=1&preload=auto',
+      videoUrl: 'https://www.youtube-nocookie.com/embed/MTglG7hf2oA?autoplay=1&mute=1&loop=1&playlist=MTglG7hf2oA&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&disablekb=1&fs=0',
       isVideo: true,
     },
     {
@@ -121,22 +87,22 @@ export function HeroSlider() {
             {/* Background video or image */}
             {slide.isVideo && slide.videoUrl ? (
               <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+                {/* YouTube videosu — 16:9 en-boyu koruyarak slider alanına TAM sığar (contain).
+                    Konteyner 70vh yüksekliğinde ve tam genişlikte; videonun tamamı görünür,
+                    taşan tarafta ince siyah bant kalır. */}
                 <iframe
                   src={slide.videoUrl}
-                  className="absolute inset-0 w-full h-full"
+                  title="Tarihi Mihrimah Sultan Hamamı tanıtım videosu"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
+                  allow="autoplay; encrypted-media; picture-in-picture"
                   allowFullScreen
                   loading="eager"
-                  style={{ 
-                    pointerEvents: 'none', 
+                  style={{
+                    pointerEvents: 'none',
                     zIndex: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transform: 'scale(1.1)',
-                    minWidth: '100%',
-                    minHeight: '100%'
+                    width: 'min(100vw, 124.44vh)', // 70vh * 16/9 = 124.44vh
+                    height: 'min(56.25vw, 70vh)', // 100vw * 9/16 = 56.25vw
                   }}
                 />
               </div>
