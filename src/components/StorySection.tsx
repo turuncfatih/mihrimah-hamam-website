@@ -91,8 +91,11 @@ export function StorySection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={ENTRANCE_IMAGE}
+            width={718}
+            height={1280}
             alt="Tarihi Mihrimah Sultan Hamamı girişi ve soğukluk bölümü"
             loading="lazy"
+            decoding="async"
             style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', borderRadius: 2 }}
           />
           <div

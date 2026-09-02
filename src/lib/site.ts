@@ -53,11 +53,28 @@ export const PHOTOS: ReadonlyArray<{ file: string; alt: string }> = [
   { file: 'image00039', alt: 'iç mekân görünümü 8' },
 ]
 
-export const photoSrc = (i: number) =>
-  `/images/hamam-photos/${PHOTOS[i].file}.jpeg`
+/** Fotoğrafların orijinal ölçüsü; tüm hamam kareleri aynı boyutta. */
+export const PHOTO_WIDTH = 1008
+export const PHOTO_HEIGHT = 756
 
-export const HERO_IMAGE = '/images/hamam-photos/image00015.jpeg'
-export const HISTORY_HERO_IMAGE = '/images/hamam-photos/image00016.jpeg'
+export const photoSrc = (i: number) => hamamPhoto(PHOTOS[i].file)
+export const photoSrcSet = (i: number) => hamamPhotoSrcSet(PHOTOS[i].file)
+
+export const hamamPhoto = (file: string) => `/images/hamam-photos/${file}.jpeg`
+
+/**
+ * 320 / 640 / 1008 piksel genişliğindeki sürümler build öncesinde üretilir;
+ * tarayıcı ekran genişliğine göre en küçüğünü indirir.
+ */
+export const hamamPhotoSrcSet = (file: string) => {
+  const base = `/images/hamam-photos/${file}`
+  return `${base}-320.jpeg 320w, ${base}-640.jpeg 640w, ${base}.jpeg ${PHOTO_WIDTH}w`
+}
+
+export const HERO_FILE = 'image00015'
+export const HERO_IMAGE = hamamPhoto(HERO_FILE)
+export const HISTORY_HERO_FILE = 'image00016'
+export const HISTORY_HERO_IMAGE = hamamPhoto(HISTORY_HERO_FILE)
 export const ENTRANCE_IMAGE = '/images/about/giris.webp'
 /** Sosyal paylaşım kartı için 1200x630 kırpılmış görsel. */
 export const OG_IMAGE = '/images/og.jpg'

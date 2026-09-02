@@ -1,15 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle -->
-  <circle cx="16" cy="16" r="16" fill="#8B4513"/>
-  
-  <!-- Dome/Arch shape -->
-  <path d="M8 12C8 8 12 6 16 6C20 6 24 8 24 12V20C24 22 22 24 20 24H12C10 24 8 22 8 20V12Z" fill="#D4AF37"/>
-  
-  <!-- Inner arch detail -->
-  <path d="M10 14C10 10 13 8 16 8C19 8 22 10 22 14V18C22 20 20 22 18 22H14C12 22 10 20 10 18V14Z" fill="#8B4513"/>
-  
-  <!-- Central ornament -->
-  <circle cx="16" cy="16" r="3" fill="#D4AF37"/>
-  <circle cx="16" cy="16" r="1.5" fill="#8B4513"/>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="16" cy="16" r="16" fill="#241F19"/>
+  <circle cx="16" cy="16" r="12.5" fill="none" stroke="#C2A87F" stroke-width="1"/>
+  <text x="16" y="16" fill="#DEC9A5" font-family="Jost, Futura, Helvetica, Arial, sans-serif"
+        font-size="13" font-weight="400" letter-spacing="0.5"
+        text-anchor="middle" dominant-baseline="central">MS</text>
 </svg>
-

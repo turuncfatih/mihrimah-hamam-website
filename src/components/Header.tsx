@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
-import { LANGS, type Lang } from '@/lib/i18n'
+import { LANGS } from '@/lib/i18n'
+import { localePath } from '@/lib/seo'
 import { waLink } from '@/lib/site'
 import { WhatsAppIcon } from './icons'
 
@@ -20,7 +21,8 @@ const SECTION_KEYS: Record<(typeof SECTIONS)[number], string> = {
  * sayfalarda anasayfaya dönüp ilgili bölüme kayacak şekilde `/#bolum` olur.
  */
 export function Header({ onHome = true }: { onHome?: boolean }) {
-  const { t, lang, setLang } = useI18n()
+  const { t, lang } = useI18n()
+  const home = localePath(lang)
   const [menuOpen, setMenuOpen] = useState(false)
   const boxRef = useRef<HTMLDivElement>(null)
 
@@ -52,7 +54,7 @@ export function Header({ onHome = true }: { onHome?: boolean }) {
         style={{ paddingBlock: 14, display: 'flex', alignItems: 'center', gap: 28 }}
       >
         <Link
-          href="/"
+          href={home}
           style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'var(--ink)', flexShrink: 0 }}
         >
           <span
@@ -97,7 +99,7 @@ export function Header({ onHome = true }: { onHome?: boolean }) {
               {t('nav.home')}
             </a>
           ) : (
-            <Link className="lnk" href="/">
+            <Link className="lnk" href={home}>
               {t('nav.home')}
             </Link>
           )}
@@ -114,7 +116,7 @@ export function Header({ onHome = true }: { onHome?: boolean }) {
                 {t(SECTION_KEYS[id])}
               </a>
             ) : (
-              <Link key={id} className="lnk" href={`/#${id}`}>
+              <Link key={id} className="lnk" href={`${home}#${id}`}>
                 {t(SECTION_KEYS[id])}
               </Link>
             )
@@ -166,34 +168,26 @@ export function Header({ onHome = true }: { onHome?: boolean }) {
               }}
             >
               {LANGS.map((l) => (
-                <button
+                <a
                   key={l.code}
-                  type="button"
                   className="lang-item"
-                  onClick={() => {
-                    setLang(l.code as Lang)
-                    setMenuOpen(false)
-                  }}
+                  href={localePath(l.code)}
+                  hrefLang={l.code}
+                  aria-current={l.code === lang ? 'true' : undefined}
                   style={{
-                    width: '100%',
                     display: 'flex',
                     alignItems: 'center',
                     gap: 11,
-                    border: 0,
-                    background: 'transparent',
-                    font: 'inherit',
                     fontSize: 14,
                     fontWeight: 300,
                     color: 'var(--ink-soft)',
                     padding: '9px 12px',
                     borderRadius: 9,
-                    cursor: 'pointer',
-                    textAlign: 'start',
                   }}
                 >
                   <span style={{ fontSize: 17, lineHeight: 1 }}>{l.flag}</span>
                   <span>{l.name}</span>
-                </button>
+                </a>
               ))}
             </div>
           )}

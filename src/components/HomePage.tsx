@@ -11,7 +11,7 @@ import { Footer } from '@/components/Footer'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { StructuredData } from '@/components/StructuredData'
 
-export default function HomePage() {
+export function HomePage() {
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
       <StructuredData />

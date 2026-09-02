@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
-import { PHOTOS, photoSrc } from '@/lib/site'
+import { PHOTO_HEIGHT, PHOTO_WIDTH, PHOTOS, photoSrc, photoSrcSet } from '@/lib/site'
 import { Reveal } from './Reveal'
 
 export function GallerySection() {
@@ -68,8 +68,13 @@ export function GallerySection() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photoSrc(i)}
+                  srcSet={photoSrcSet(i)}
+                  sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 300px"
+                  width={PHOTO_WIDTH}
+                  height={PHOTO_HEIGHT}
                   alt={`Tarihi Mihrimah Sultan Hamamı — ${photo.alt}`}
                   loading="lazy"
+                  decoding="async"
                 />
               </button>
             ))}

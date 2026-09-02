@@ -1,7 +1,7 @@
 'use client'
 
 import { useI18n } from '@/contexts/I18nContext'
-import { HERO_IMAGE, waLink } from '@/lib/site'
+import { HERO_FILE, HERO_IMAGE, hamamPhotoSrcSet, waLink } from '@/lib/site'
 import { WhatsAppIcon } from './icons'
 
 export function HeroSection() {
@@ -23,6 +23,9 @@ export function HeroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={HERO_IMAGE}
+          srcSet={hamamPhotoSrcSet(HERO_FILE)}
+          sizes="100vw"
+          decoding="async"
           alt="Tarihi Mihrimah Sultan Hamamı iç mekânından bir görünüm"
           style={{
             position: 'absolute',

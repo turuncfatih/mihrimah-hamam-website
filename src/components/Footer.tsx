@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
+import { localePath } from '@/lib/seo'
 import { ADDRESS, CONTACT, HOURS, MAPS_LINK, waLink } from '@/lib/site'
 import { WhatsAppIcon } from './icons'
 
@@ -22,7 +23,8 @@ const colBody = {
 
 export function Footer({ onHome = true }: { onHome?: boolean }) {
   const { t, lang } = useI18n()
-  const section = (id: string) => (onHome ? `#${id}` : `/#${id}`)
+  const home = localePath(lang)
+  const section = (id: string) => (onHome ? `#${id}` : `${home}#${id}`)
 
   return (
     <footer
@@ -43,7 +45,7 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 15, color: 'var(--bg)' }}>
+          <Link href={home} style={{ display: 'flex', alignItems: 'center', gap: 15, color: 'var(--bg)' }}>
             <span
               style={{
                 width: 52,

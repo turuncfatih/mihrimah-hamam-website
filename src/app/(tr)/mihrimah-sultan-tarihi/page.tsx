@@ -8,12 +8,17 @@ import { WhatsAppIcon } from '@/components/icons'
 import {
   ADDRESS,
   ENTRANCE_IMAGE,
+  HISTORY_HERO_FILE,
   HISTORY_HERO_IMAGE,
   HOURS,
   OG_IMAGE,
   SCHEMA_IMAGE,
   SITE_URL,
+  PHOTO_HEIGHT,
+  PHOTO_WIDTH,
+  hamamPhotoSrcSet,
   photoSrc,
+  photoSrcSet,
   waLink,
 } from '@/lib/site'
 import {
@@ -39,6 +44,7 @@ const DESCRIPTION =
   "Mihrimah Sultan kimdir? Kanuni'nin kızının hayatı, Mimar Sinan'la kurduğu ortaklık, Edirnekapı Külliyesi, Osmanlı hamam kültürü ve 1560'lardan bugüne çalışan Tarihi Mihrimah Sultan Hamamı'nın tarihi — görsellerle, zaman çizelgesiyle."
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: TITLE,
   description: DESCRIPTION,
   keywords: [
@@ -51,6 +57,7 @@ export const metadata: Metadata = {
     'karagümrük hamam',
     'tarihi türk hamamı istanbul',
   ],
+  // Bu sayfanın içeriği yalnızca Türkçe; bu yüzden dil alternatifi bildirilmiyor.
   alternates: { canonical: PATH },
   openGraph: {
     type: 'article',
@@ -186,6 +193,9 @@ export default function HistoryPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={HISTORY_HERO_IMAGE}
+          srcSet={hamamPhotoSrcSet(HISTORY_HERO_FILE)}
+          sizes="100vw"
+          decoding="async"
           alt="Tarihi Mihrimah Sultan Hamamı'nın ahşap galerili camekân bölümü"
           style={{
             position: 'absolute',
@@ -473,8 +483,11 @@ export default function HistoryPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={ENTRANCE_IMAGE}
+                width={718}
+                height={1280}
                 alt="Tarihi Mihrimah Sultan Hamamı'nın Fevzipaşa Caddesi üzerindeki sokak girişi"
                 loading="lazy"
+                decoding="async"
                 style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover' }}
               />
               <figcaption
@@ -631,8 +644,13 @@ export default function HistoryPage() {
                   <img
                     key={i}
                     src={photoSrc(i)}
+                    srcSet={photoSrcSet(i)}
+                    sizes="(max-width: 700px) 90vw, 250px"
+                    width={PHOTO_WIDTH}
+                    height={PHOTO_HEIGHT}
                     alt="Tarihi Mihrimah Sultan Hamamı iç mekânından bir görünüm"
                     loading="lazy"
+                    decoding="async"
                     style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}
                   />
                 ))}
