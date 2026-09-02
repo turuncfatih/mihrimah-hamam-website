@@ -2,21 +2,371 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap');
+/* ------------------------------------------------------------------
+   Mihrimah Sultan Hamamı — tasarım sistemi
+   Renkler ve tipografi claude.design'daki tasarımla birebir aynıdır.
+   ------------------------------------------------------------------ */
 
 :root {
-  --primary-color: #a58661;
+  --bg: #f7f4ef;
+  --bg-alt: #efe9df;
+  --card: #fdfbf7;
+  --card-soft: #fbf8f3;
+  --ink: #241f19;
+  --ink-soft: #3f382f;
+  --body: #4a4239;
+  --body-soft: #5a5248;
+  --muted: #7a7267;
+  --muted-2: #8a8175;
+  --muted-3: #9a9287;
+  --gold: #8c6a3f;
+  --gold-soft: #b09468;
+  --gold-line: #c2a87f;
+  --sand: #dec9a5;
+  --line: #e4ddd1;
+  --line-2: #e0d7c8;
+  --line-3: #dcd3c4;
+  --cream: #fbf8f3;
+  --dark: #241f19;
+  --darker: #1b1815;
+  --wa: #25d366;
+  --wa-dark: #1f7a44;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Manrope', 'Noto Sans', sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-jost), -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
+[dir='rtl'] body {
+  font-family: var(--font-kufi), var(--font-jost), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--sand);
+}
+
+details summary::-webkit-details-marker {
   display: none;
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@keyframes msh-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes msh-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Ortak kaplar ------------------------------------------------- */
+
+.msh-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: 28px;
+}
+
+.msh-shell--narrow {
+  max-width: 1180px;
+}
+
+.msh-rise {
+  animation: msh-rise 0.9s ease both;
+}
+
+/* --- Bağlantı ve buton hover durumları ---------------------------- */
+
+.lnk {
+  color: inherit;
+  transition: color 0.25s ease;
+}
+.lnk:hover {
+  color: var(--gold);
+}
+
+.lnk-sand {
+  color: inherit;
+  transition: color 0.25s ease;
+}
+.lnk-sand:hover {
+  color: var(--sand);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-dark {
+  background: var(--dark);
+  color: var(--bg);
+}
+.btn-dark:hover {
+  background: var(--wa-dark);
+  color: #fff;
+}
+
+.btn-cream {
+  background: var(--bg);
+  color: var(--ink);
+}
+.btn-cream:hover {
+  background: var(--sand);
+}
+
+.btn-sand {
+  background: var(--sand);
+  color: var(--ink);
+}
+.btn-sand:hover {
+  background: var(--bg);
+}
+
+.btn-outline-light {
+  border: 1px solid rgba(251, 248, 243, 0.45);
+  color: #fbf8f3;
+}
+.btn-outline-light:hover {
+  background: rgba(251, 248, 243, 0.12);
+}
+
+.btn-outline-dark {
+  border: 1px solid var(--dark);
+  color: var(--ink);
+}
+.btn-outline-dark:hover {
+  background: var(--dark);
+  color: var(--bg);
+}
+
+.btn-wa {
+  background: var(--wa-dark);
+  color: #fff;
+}
+.btn-wa:hover {
+  background: var(--dark);
+}
+
+.btn-wa-ghost {
+  border: 1px solid rgba(247, 244, 239, 0.28);
+  color: #f7f4ef;
+}
+.btn-wa-ghost:hover {
+  background: var(--wa);
+  border-color: var(--wa);
+  color: #0b2a17;
+}
+
+.msh-fab {
+  background: var(--wa);
+  color: #0b2a17;
+  box-shadow: 0 14px 34px rgba(20, 17, 14, 0.28);
+}
+.msh-fab:hover {
+  background: var(--wa-dark);
+  color: #fff;
+}
+
+.icon-btn {
+  transition: background 0.25s ease;
+}
+.icon-btn:hover {
+  background: rgba(247, 244, 239, 0.14);
+}
+
+/* --- Kartlar ------------------------------------------------------ */
+
+.card-outline {
+  border: 1px solid var(--line-2);
+  background: var(--card);
+  transition: border-color 0.3s ease;
+}
+.card-outline:hover {
+  border-color: var(--gold-line);
+}
+
+.mapcard {
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.mapcard:hover {
+  border-color: var(--gold-line);
+  background: #fff;
+}
+
+/* --- Dil menüsü --------------------------------------------------- */
+
+.langbtn {
+  transition: border-color 0.25s ease;
+}
+.langbtn:hover {
+  border-color: var(--gold-line);
+}
+
+.lang-item {
+  transition: background 0.2s ease;
+}
+.lang-item:hover {
+  background: var(--bg-alt);
+}
+
+/* --- Galeri ------------------------------------------------------- */
+
+.gal-btn {
+  border: 0;
+  padding: 0;
+  cursor: zoom-in;
+  background: #33291f;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.gal-btn img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: transform 0.7s ease, opacity 0.4s ease;
+}
+.gal-btn:hover img {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* --- Yorum şeridi ------------------------------------------------- */
+
+.msh-rail {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.msh-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: msh-marquee 64s linear infinite;
+}
+.msh-rail:hover .msh-track {
+  animation-play-state: paused;
+}
+
+/* --- SSS ---------------------------------------------------------- */
+
+details[data-faq] {
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+details[data-faq] > summary > span:last-child {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* --- Görünüme girince beliren bloklar ----------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .msh-track,
+  .msh-rise {
+    animation: none;
+  }
+}
+
+/* --- Mobil düzen -------------------------------------------------- */
+
+.msh-nav {
+  display: flex;
+  gap: 26px;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: var(--body);
+}
+
+@media (max-width: 900px) {
+  .msh-shell {
+    padding-inline: 20px;
+  }
+  .msh-header-row {
+    flex-wrap: wrap;
+    gap: 14px 16px;
+  }
+  .msh-nav {
+    order: 3;
+    width: 100%;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    margin-inline-start: 0 !important;
+    scrollbar-width: none;
+  }
+  .msh-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .msh-nav a {
+    white-space: nowrap;
+  }
+  .msh-brand-sub {
+    display: none;
+  }
+  .msh-sidebar {
+    position: static !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .msh-fab span {
+    display: none;
+  }
+  .msh-fab {
+    padding: 15px !important;
+  }
 }

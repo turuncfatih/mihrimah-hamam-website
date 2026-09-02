@@ -1,65 +1,186 @@
 'use client'
 
+import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
+import { ADDRESS, CONTACT, HOURS, MAPS_LINK, waLink } from '@/lib/site'
+import { WhatsAppIcon } from './icons'
 
-export function Footer() {
-  const { t } = useI18n()
+const colTitle = {
+  fontSize: 10,
+  letterSpacing: '0.26em',
+  textTransform: 'uppercase' as const,
+  color: 'var(--muted-2)',
+}
+
+const colBody = {
+  display: 'flex',
+  flexDirection: 'column' as const,
+  gap: 12,
+  fontSize: 14.5,
+  fontWeight: 300,
+}
+
+export function Footer({ onHome = true }: { onHome?: boolean }) {
+  const { t, lang } = useI18n()
+  const section = (id: string) => (onHome ? `#${id}` : `/#${id}`)
 
   return (
-    <footer id="contact" className="bg-stone-800 text-stone-300 py-12">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold mb-4 text-white">{t('contactInfo')}</h2>
-            <p className="mb-4">{t('address')}</p>
-            <p className="mb-4">{t('phone')}</p>
-            <p className="mb-8">{t('email')}</p>
-            <button className="bg-green-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 mx-auto md:mx-0">
-              <svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20">
-                <path d="M128,24A104,104,0,0,0,24,128c0,21.07,6.4,40.73,17.81,57.73L30.34,228.66a8,8,0,0,0,9.79,9.79l42.93-11.47C100.27,238.6,113.93,240,128,240a104,104,0,0,0,0-208Zm0,192a87.87,87.87,0,0,1-45.18-12.83l-3.32-2-33.35,8.9L55,178.82l-2.22-3.47A88,88,0,1,1,128,216Zm57.45-66.87c-2.78-1.39-16.44-8.1-19-9.1s-4.42-1.39-6.27,1.39-7.19,9.1-8.82,11-3.24,2.08-6,1.39-12.39-4.57-23.6-14.56-17.5-21.72-18.42-24.1c-.92-2.37.93-3.63,2-4.78a13.63,13.63,0,0,0,2.37-2.78c.31-.41.15-1.11-.16-1.8s-6.27-15.1-8.58-20.66c-2.26-5.4-4.57-4.66-6.27-4.74s-3.41-.08-5.18-.08a10.67,10.67,0,0,0-7.74,3.62c-2.62,3.25-10,9.81-10,23.92s10.23,27.75,11.64,29.83S82.35,179,109,190.15c28.35,11.8,28.35,7.5,33.43,7.06,5.08-.41,16.44-6.73,18.75-13.23s2.31-12,1.62-13.23S188.23,150.52,185.45,149.13Z" />
-              </svg>
-              {t('whatsappContact')}
-            </button>
-          </div>
-          
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold mb-4 text-white">{t('workingHours')}</h2>
-            <div className="space-y-4">
-              <div className="bg-stone-700/50 p-4 rounded-lg">
-                <h3 className="font-bold text-lg mb-2 text-white">{t('menSection')}</h3>
-                <p className="text-stone-300">
-                  <span className="font-semibold">{t('openingHours')}:</span> 07:00
-                </p>
-                <p className="text-stone-300">
-                  <span className="font-semibold">{t('closingHours')}:</span> 23:00
-                </p>
-              </div>
-              <div className="bg-stone-700/50 p-4 rounded-lg">
-                <h3 className="font-bold text-lg mb-2 text-white">{t('womenSection')}</h3>
-                <p className="text-stone-300">
-                  <span className="font-semibold">{t('openingHours')}:</span> 09:00
-                </p>
-                <p className="text-stone-300">
-                  <span className="font-semibold">{t('closingHours')}:</span> 20:00
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="rounded-lg overflow-hidden shadow-lg h-80">
-            <iframe 
-              allowFullScreen
-              height="100%" 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade" 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.301594951111!2d28.95021861538357!3d41.01880997930001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caba21a833509d%3A0xf626b4f74d6f304!2sMihrimah%20Sultan%20Hamam%C4%B1!5e0!3m2!1str!2str!4v1678886453213!5m2!1str!2str" 
-              style={{ border: 0 }} 
-              width="100%"
-            />
+    <footer
+      style={{
+        background: 'var(--darker)',
+        color: 'rgba(247,244,239,0.66)',
+        borderTop: '1px solid rgba(222,201,165,0.16)',
+      }}
+    >
+      <div
+        className="msh-shell"
+        style={{
+          paddingTop: 'clamp(58px,6vw,92px)',
+          paddingBottom: 'clamp(38px,4vw,54px)',
+          display: 'grid',
+          gridTemplateColumns: 'minmax(260px,1.35fr) repeat(auto-fit,minmax(170px,1fr))',
+          gap: 'clamp(38px,5vw,72px)',
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 15, color: 'var(--bg)' }}>
+            <span
+              style={{
+                width: 52,
+                height: 52,
+                flexShrink: 0,
+                border: '1px solid rgba(222,201,165,0.5)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 17,
+                fontWeight: 300,
+                letterSpacing: '0.04em',
+                color: 'var(--sand)',
+              }}
+            >
+              MS
+            </span>
+            <span style={{ display: 'flex', flexDirection: 'column', gap: 6, lineHeight: 1.1 }}>
+              <span style={{ fontSize: 18, fontWeight: 400, letterSpacing: '0.01em', color: 'var(--bg)' }}>
+                Tarihi Mihrimah Sultan Hamamı
+              </span>
+              <span
+                style={{
+                  fontSize: 10,
+                  letterSpacing: '0.28em',
+                  textTransform: 'uppercase',
+                  color: 'var(--gold-soft)',
+                }}
+              >
+                {t('footer.est')}
+              </span>
+            </span>
+          </Link>
+          <p style={{ fontSize: 14.5, fontWeight: 300, lineHeight: 1.72, maxWidth: '30em' }}>
+            {t('footer.tag')}
+          </p>
+          <a
+            className="btn btn-wa-ghost"
+            href={waLink(lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ alignSelf: 'flex-start', gap: 9, fontSize: 13, padding: '12px 22px' }}
+          >
+            <WhatsAppIcon size={16} />
+            <span>{t('cta.whatsapp')}</span>
+          </a>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <p style={colTitle}>{t('footer.explore')}</p>
+          <div style={colBody}>
+            <Link className="lnk-sand" href="/mihrimah-sultan-tarihi">
+              {t('nav.history2')}
+            </Link>
+            <a className="lnk-sand" href={section('ritual')}>
+              {t('nav.ritual2')}
+            </a>
+            <a className="lnk-sand" href={section('packages')}>
+              {t('nav.prices2')}
+            </a>
+            <a className="lnk-sand" href={section('gallery')}>
+              {t('nav.gallery2')}
+            </a>
           </div>
         </div>
-        
-        <p className="text-sm text-stone-400 text-center mt-12">{t('copyright')}</p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <p style={colTitle}>{t('footer.contact')}</p>
+          <div style={colBody}>
+            <a
+              className="lnk-sand"
+              href={`tel:${CONTACT.phone}`}
+              style={{ fontVariantNumeric: 'tabular-nums' }}
+            >
+              {CONTACT.phoneDisplay}
+            </a>
+            <a className="lnk-sand" href={`mailto:${CONTACT.email}`} style={{ wordBreak: 'break-word' }}>
+              {CONTACT.email}
+            </a>
+            <span style={{ lineHeight: 1.6 }}>
+              {ADDRESS.street}
+              <br />
+              Karagümrük, 34091 Fatih
+            </span>
+            <a href={MAPS_LINK} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sand)' }}>
+              {t('cta.directions')}
+            </a>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <p style={colTitle}>{t('footer.hours')}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, fontSize: 14.5, fontWeight: 300 }}>
+            <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <span style={{ color: 'rgba(247,244,239,0.55)', fontSize: 12.5, letterSpacing: '0.1em' }}>
+                {t('visit.menh')}
+              </span>
+              <span style={{ color: 'var(--bg)', fontVariantNumeric: 'tabular-nums' }}>{HOURS.men}</span>
+            </span>
+            <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <span style={{ color: 'rgba(247,244,239,0.55)', fontSize: 12.5, letterSpacing: '0.1em' }}>
+                {t('visit.womenh')}
+              </span>
+              <span style={{ color: 'var(--bg)', fontVariantNumeric: 'tabular-nums' }}>{HOURS.women}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Sabit WhatsApp butonu sağ altta durduğu için künye satırına fazladan alt boşluk. */}
+      <div className="msh-shell" style={{ paddingBottom: 'clamp(64px,6vw,84px)' }}>
+        <div
+          style={{
+            borderTop: '1px solid rgba(247,244,239,0.12)',
+            paddingTop: 24,
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '14px 34px',
+            alignItems: 'center',
+            fontSize: 12,
+            letterSpacing: '0.08em',
+            color: 'rgba(247,244,239,0.42)',
+          }}
+        >
+          <span>© {new Date().getFullYear()} Tarihi Mihrimah Sultan Hamamı</span>
+          <span>{t('footer.rights')}</span>
+          <a
+            className="lnk-sand"
+            href="https://turuncsoft.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginInlineStart: 'auto', color: 'rgba(247,244,239,0.55)' }}
+          >
+            Turunc Soft
+          </a>
+        </div>
       </div>
     </footer>
   )

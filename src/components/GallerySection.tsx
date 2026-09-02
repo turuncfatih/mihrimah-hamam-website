@@ -1,168 +1,185 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
-import { GALLERY_IMAGES, FALLBACK_IMAGES, IMAGE_ALT_TEXTS } from '@/constants/images'
+import { PHOTOS, photoSrc } from '@/lib/site'
+import { Reveal } from './Reveal'
 
 export function GallerySection() {
   const { t } = useI18n()
-  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [index, setIndex] = useState<number | null>(null)
 
-  // ESC tuşu ile modal'ı kapat
+  const step = useCallback((delta: number) => {
+    setIndex((cur) => (cur === null ? cur : (cur + delta + PHOTOS.length) % PHOTOS.length))
+  }, [])
+
   useEffect(() => {
-    const handleEscKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setSelectedImage(null)
-      }
+    if (index === null) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') step(1)
+      else if (e.key === 'ArrowLeft') step(-1)
+      else if (e.key === 'Escape') setIndex(null)
     }
-
-    if (selectedImage !== null) {
-      document.addEventListener('keydown', handleEscKey)
-      document.body.style.overflow = 'hidden' // Scroll'u engelle
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscKey)
-      document.body.style.overflow = 'unset' // Scroll'u geri aç
-    }
-  }, [selectedImage])
-
-  const galleryImages = [
-    {
-      src: GALLERY_IMAGES.image1,
-      fallbackSrc: GALLERY_IMAGES.image1,
-      alt: IMAGE_ALT_TEXTS.gallery.image1,
-    },
-    {
-      src: GALLERY_IMAGES.image2,
-      fallbackSrc: GALLERY_IMAGES.image2,
-      alt: IMAGE_ALT_TEXTS.gallery.image2,
-    },
-    {
-      src: GALLERY_IMAGES.image3,
-      fallbackSrc: GALLERY_IMAGES.image3,
-      alt: IMAGE_ALT_TEXTS.gallery.image3,
-    },
-    {
-      src: GALLERY_IMAGES.image4,
-      fallbackSrc: GALLERY_IMAGES.image4,
-      alt: IMAGE_ALT_TEXTS.gallery.image4,
-    },
-    {
-      src: GALLERY_IMAGES.image5,
-      fallbackSrc: GALLERY_IMAGES.image5,
-      alt: IMAGE_ALT_TEXTS.gallery.image5,
-    },
-    {
-      src: GALLERY_IMAGES.image6,
-      fallbackSrc: GALLERY_IMAGES.image6,
-      alt: IMAGE_ALT_TEXTS.gallery.image6,
-    },
-    {
-      src: GALLERY_IMAGES.image7,
-      fallbackSrc: GALLERY_IMAGES.image7,
-      alt: IMAGE_ALT_TEXTS.gallery.image7,
-    },
-    {
-      src: GALLERY_IMAGES.image8,
-      fallbackSrc: GALLERY_IMAGES.image8,
-      alt: IMAGE_ALT_TEXTS.gallery.image8,
-    },
-  ]
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [index, step])
 
   return (
-    <section id="gallery" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">{t('ourGallery')}</h2>
-          <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-            {t('gallerySubtitle')}
+    <>
+      <section id="gallery" style={{ scrollMarginTop: 90, background: 'var(--dark)', color: 'var(--bg)' }}>
+        <div className="msh-shell" style={{ paddingBlock: 'clamp(72px,9vw,130px)' }}>
+          <p
+            style={{
+              fontSize: 11,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              color: 'var(--sand)',
+            }}
+          >
+            {t('gal.k')}
           </p>
+          <h2
+            style={{
+              marginTop: 22,
+              fontSize: 'clamp(30px,3.6vw,52px)',
+              fontWeight: 200,
+              lineHeight: 1.1,
+              letterSpacing: '-0.015em',
+            }}
+          >
+            {t('gal.title')}
+          </h2>
+          <Reveal
+            style={{
+              marginTop: 'clamp(40px,5vw,66px)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))',
+              gap: 14,
+            }}
+          >
+            {PHOTOS.map((photo, i) => (
+              <button
+                key={photo.file}
+                type="button"
+                className="gal-btn"
+                onClick={() => setIndex(i)}
+                aria-label={`Fotoğrafı büyüt: ${photo.alt}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photoSrc(i)}
+                  alt={`Tarihi Mihrimah Sultan Hamamı — ${photo.alt}`}
+                  loading="lazy"
+                />
+              </button>
+            ))}
+          </Reveal>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image, index) => (
-            <div key={index} className="aspect-square overflow-hidden cursor-pointer">
-              <img 
-                alt={image.alt}
-                className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105 transition-transform duration-300" 
-                src={image.src}
-                onClick={() => setSelectedImage(index)}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.src = image.fallbackSrc
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
 
-      {/* Modal */}
-      {selectedImage !== null && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+      {index !== null && (
+        <div
+          onClick={() => setIndex(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 100,
+            background: 'rgba(16,13,10,0.95)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 22,
+            padding: '5vh 4vw',
+          }}
         >
-          <div className="relative max-w-4xl max-h-full">
-            {/* Çarpı butonu */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={photoSrc(index)}
+            alt={`Tarihi Mihrimah Sultan Hamamı — ${PHOTOS[index].alt}`}
+            style={{ maxWidth: '100%', maxHeight: '78vh', objectFit: 'contain', borderRadius: 2 }}
+          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
             <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-200 z-10"
-              aria-label="Kapat"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Fotoğraf */}
-            <img
-              src={galleryImages[selectedImage].src}
-              alt={galleryImages[selectedImage].alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement
-                target.src = galleryImages[selectedImage].fallbackSrc
-              }}
-            />
-
-            {/* Navigasyon butonları */}
-            <button
+              type="button"
+              className="icon-btn"
+              aria-label="Önceki"
               onClick={(e) => {
                 e.stopPropagation()
-                setSelectedImage(prev => prev === 0 ? galleryImages.length - 1 : prev! - 1)
+                step(-1)
               }}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all duration-200"
-              aria-label="Önceki fotoğraf"
+              style={{
+                width: 46,
+                height: 46,
+                borderRadius: '50%',
+                border: '1px solid rgba(247,244,239,0.35)',
+                background: 'transparent',
+                color: '#F7F4EF',
+                font: 'inherit',
+                fontSize: 17,
+                cursor: 'pointer',
+              }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-              </svg>
+              ‹
             </button>
-
+            <span
+              style={{
+                fontSize: 12.5,
+                letterSpacing: '0.16em',
+                color: 'rgba(247,244,239,0.7)',
+                minWidth: 66,
+                textAlign: 'center',
+              }}
+            >
+              {index + 1} / {PHOTOS.length}
+            </span>
             <button
+              type="button"
+              className="icon-btn"
+              aria-label="Sonraki"
               onClick={(e) => {
                 e.stopPropagation()
-                setSelectedImage(prev => prev === galleryImages.length - 1 ? 0 : prev! + 1)
+                step(1)
               }}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all duration-200"
-              aria-label="Sonraki fotoğraf"
+              style={{
+                width: 46,
+                height: 46,
+                borderRadius: '50%',
+                border: '1px solid rgba(247,244,239,0.35)',
+                background: 'transparent',
+                color: '#F7F4EF',
+                font: 'inherit',
+                fontSize: 17,
+                cursor: 'pointer',
+              }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-              </svg>
+              ›
             </button>
-
-            {/* Fotoğraf bilgisi */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-lg">
-              <p className="text-sm font-medium">
-                {selectedImage + 1} / {galleryImages.length}
-              </p>
-            </div>
           </div>
+          <button
+            type="button"
+            className="icon-btn"
+            aria-label="Kapat"
+            onClick={() => setIndex(null)}
+            style={{
+              position: 'absolute',
+              top: 24,
+              insetInlineEnd: 26,
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              border: '1px solid rgba(247,244,239,0.3)',
+              background: 'transparent',
+              color: '#F7F4EF',
+              font: 'inherit',
+              fontSize: 18,
+              cursor: 'pointer',
+            }}
+          >
+            ×
+          </button>
         </div>
       )}
-    </section>
+    </>
   )
 }

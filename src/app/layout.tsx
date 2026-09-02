@@ -1,16 +1,27 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import Script from 'next/script'
+import { Jost, Noto_Kufi_Arabic } from 'next/font/google'
 import './globals.css'
 import { I18nProvider } from '@/contexts/I18nContext'
-import { StructuredData } from '@/components/StructuredData'
+import { OG_IMAGE, SITE_URL } from '@/lib/site'
 
-const inter = Inter({ subsets: ['latin'] })
+const jost = Jost({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['200', '300', '400', '500'],
+  variable: '--font-jost',
+  display: 'swap',
+})
 
-const SITE_URL = 'https://mihrimahsultanhamami.com'
-const SITE_TITLE = 'Tarihi Mihrimah Sultan Hamamı | Edirnekapı, Fatih İstanbul'
+const kufi = Noto_Kufi_Arabic({
+  subsets: ['arabic'],
+  weight: ['300', '400', '500'],
+  variable: '--font-kufi',
+  display: 'swap',
+})
+
+const SITE_TITLE =
+  'Tarihi Mihrimah Sultan Hamamı | Mimar Sinan Eseri — Edirnekapı, Fatih İstanbul'
 const SITE_DESCRIPTION =
-  "Mimar Sinan'ın 16. yüzyılda inşa ettiği Edirnekapı Fatih'teki otantik Osmanlı hamamı. Erkek ve kadın bölümleri, geleneksel kese, köpük masajı ve masaj paketleri. Güncel fiyatlar: Standart 600 TL, Geleneksel Paket 900–1000 TL, Mihrimah Sultan Paketi 1600 TL."
+  "Mimar Sinan'ın 16. yüzyılda inşa ettiği Edirnekapı'daki otantik Osmanlı hamamı. Kadın ve erkek bölümleri, geleneksel kese, köpük masajı, yağ masajı. Fiyatlar: 600 TL'den başlar. Günlük 07:00–23:00."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -18,24 +29,20 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     'mihrimah sultan hamamı',
-    'mihrimah sultan hamamı fiyatları',
     'edirnekapı hamam',
     'fatih hamam',
-    'istanbul hamam',
-    'tarihi hamam',
-    'mimar sinan hamam',
-    'osmanlı hamamı',
+    'istanbul tarihi hamam',
+    'mimar sinan hamamı',
     'türk hamamı',
-    'kadınlar hamamı istanbul',
-    'erkekler hamamı istanbul',
+    'turkish bath istanbul',
+    'hammam istanbul',
     'kese köpük masajı',
+    'kadınlar hamamı istanbul',
   ],
   authors: [{ name: 'Tarihi Mihrimah Sultan Hamamı' }],
   applicationName: 'Tarihi Mihrimah Sultan Hamamı',
   category: 'Health & Beauty',
-  alternates: {
-    canonical: SITE_URL,
-  },
+  alternates: { canonical: '/' },
   robots: {
     index: true,
     follow: true,
@@ -54,13 +61,13 @@ export const metadata: Metadata = {
     siteName: 'Tarihi Mihrimah Sultan Hamamı',
     type: 'website',
     locale: 'tr_TR',
-    alternateLocale: ['en_US', 'es_ES', 'ar_AR'],
+    alternateLocale: ['en_US', 'ar_AR', 'ru_RU', 'es_ES'],
     images: [
       {
-        url: '/images/gallery/gobektas.jpg',
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'Tarihi Mihrimah Sultan Hamamı göbek taşı',
+        alt: 'Tarihi Mihrimah Sultan Hamamı iç mekân',
       },
     ],
   },
@@ -68,56 +75,22 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ['/images/gallery/gobektas.jpg'],
+    images: [OG_IMAGE],
   },
-  formatDetection: {
-    telephone: true,
-    address: true,
-  },
+  formatDetection: { telephone: true, address: true },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr">
+    <html lang="tr" dir="ltr" className={`${jost.variable} ${kufi.variable}`}>
       <head>
-        <link 
-          rel="preconnect" 
-          href="https://fonts.googleapis.com" 
-          crossOrigin=""
-        />
-        <link 
-          rel="preconnect" 
-          href="https://fonts.gstatic.com" 
-          crossOrigin=""
-        />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" 
-          rel="stylesheet"
-        />
-        <link 
-          rel="icon" 
-          href="/favicon.svg" 
-          type="image/svg+xml"
-        />
-        <link
-          rel="icon"
-          href="/favicon.ico"
-          type="image/x-icon"
-        />
-        <StructuredData />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8c6a3f" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#f7f4ef" />
       </head>
-      <body className={`${inter.className} bg-stone-50 text-gray-800`}>
-        <Script 
-          src="https://player.vimeo.com/api/player.js" 
-          strategy="beforeInteractive"
-        />
-        <I18nProvider>
-          {children}
-        </I18nProvider>
+      <body>
+        <I18nProvider>{children}</I18nProvider>
       </body>
     </html>
   )

@@ -1,88 +1,214 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
+import { LANGS, type Lang } from '@/lib/i18n'
+import { waLink } from '@/lib/site'
+import { WhatsAppIcon } from './icons'
 
-export function Header() {
-  const { t, currentLocale, changeLocale, getCurrentLocale, locales } = useI18n()
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
+const SECTIONS = ['ritual', 'packages', 'gallery', 'visit'] as const
+const SECTION_KEYS: Record<(typeof SECTIONS)[number], string> = {
+  ritual: 'nav.ritual',
+  packages: 'nav.prices',
+  gallery: 'nav.gallery',
+  visit: 'nav.visit',
+}
 
-  const handleLanguageChange = (locale: string) => {
-    changeLocale(locale)
-    setIsLanguageMenuOpen(false)
-  }
+/**
+ * @param onHome Anasayfadayken bölüm bağlantıları düz anchor olur; diğer
+ * sayfalarda anasayfaya dönüp ilgili bölüme kayacak şekilde `/#bolum` olur.
+ */
+export function Header({ onHome = true }: { onHome?: boolean }) {
+  const { t, lang, setLang } = useI18n()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const boxRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onClick = (e: MouseEvent) => {
+      if (boxRef.current && !boxRef.current.contains(e.target as Node)) setMenuOpen(false)
+    }
+    document.addEventListener('click', onClick)
+    return () => document.removeEventListener('click', onClick)
+  }, [menuOpen])
+
+  const current = LANGS.find((l) => l.code === lang) ?? LANGS[0]
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <svg 
-            className="h-10 w-10 text-primary" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
+    <header
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 60,
+        background: 'rgba(247,244,239,0.9)',
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+        borderBottom: '1px solid var(--line)',
+      }}
+    >
+      <div
+        className="msh-shell msh-header-row"
+        style={{ paddingBlock: 14, display: 'flex', alignItems: 'center', gap: 28 }}
+      >
+        <Link
+          href="/"
+          style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'var(--ink)', flexShrink: 0 }}
+        >
+          <span
+            style={{
+              width: 48,
+              height: 48,
+              flexShrink: 0,
+              border: '1px solid var(--gold-line)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 17,
+              fontWeight: 300,
+              letterSpacing: '0.05em',
+              color: 'var(--gold)',
+            }}
           >
-            <path 
-              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0v-4a2 2 0 012-2h10a2 2 0 012 2v4m-6 0v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth="2"
-            />
-          </svg>
-          <h1 className="text-2xl font-bold text-gray-800">{t('siteTitle')}</h1>
-        </div>
-        
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <a className="hover:text-primary transition-colors" href="#home">{t('home')}</a>
-          <a className="hover:text-primary transition-colors" href="#about">{t('about')}</a>
-          <a className="hover:text-primary transition-colors" href="#services">{t('services')}</a>
-          <a className="hover:text-primary transition-colors" href="#gallery">{t('gallery')}</a>
-          <a className="hover:text-primary transition-colors" href="#contact">{t('contact')}</a>
-        </nav>
-        
-        <div className="flex items-center gap-2">
-          <div className="relative inline-block text-left group">
-            <button 
-              className="bg-gray-100 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2 text-sm"
-              onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+            MS
+          </span>
+          <span style={{ display: 'flex', flexDirection: 'column', gap: 4, lineHeight: 1.12 }}>
+            <span style={{ fontSize: 18, fontWeight: 400, letterSpacing: '0.01em' }}>
+              Mihrimah Sultan
+            </span>
+            <span
+              className="msh-brand-sub"
+              style={{
+                fontSize: 10,
+                letterSpacing: '0.26em',
+                textTransform: 'uppercase',
+                color: 'var(--muted-2)',
+              }}
             >
-              <span>{t('language')}</span>
-              <svg 
-                className="w-4 h-4" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  d="M19 9l-7 7-7-7" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2"
-                />
-              </svg>
-            </button>
-            
-            {isLanguageMenuOpen && (
-              <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
-                <div className="py-1" role="menu">
-                  {locales.map((locale) => (
-                    <button
-                      key={locale.code}
-                      className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
-                        currentLocale === locale.code ? 'text-primary font-medium' : 'text-gray-700'
-                      }`}
-                      onClick={() => handleLanguageChange(locale.code)}
-                      role="menuitem"
-                    >
-                      <span className="mr-2">{locale.flag}</span>
-                      {locale.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+              {t('brand.sub')}
+            </span>
+          </span>
+        </Link>
+
+        <nav className="msh-nav" style={{ marginInlineStart: 'auto' }}>
+          {onHome ? (
+            <a className="lnk" href="#top">
+              {t('nav.home')}
+            </a>
+          ) : (
+            <Link className="lnk" href="/">
+              {t('nav.home')}
+            </Link>
+          )}
+          <Link
+            className="lnk"
+            href="/mihrimah-sultan-tarihi"
+            style={onHome ? undefined : { color: 'var(--gold)' }}
+          >
+            {t('nav.history')}
+          </Link>
+          {SECTIONS.map((id) =>
+            onHome ? (
+              <a key={id} className="lnk" href={`#${id}`}>
+                {t(SECTION_KEYS[id])}
+              </a>
+            ) : (
+              <Link key={id} className="lnk" href={`/#${id}`}>
+                {t(SECTION_KEYS[id])}
+              </Link>
+            )
+          )}
+        </nav>
+
+        <div ref={boxRef} style={{ position: 'relative', flexShrink: 0 }}>
+          <button
+            type="button"
+            className="langbtn"
+            aria-haspopup="listbox"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 9,
+              border: '1px solid var(--line-2)',
+              background: 'var(--card)',
+              borderRadius: 999,
+              padding: '7px 13px 7px 11px',
+              font: 'inherit',
+              fontSize: 12,
+              letterSpacing: '0.08em',
+              color: 'var(--body)',
+              cursor: 'pointer',
+            }}
+          >
+            <span style={{ fontSize: 16, lineHeight: 1 }}>{current.flag}</span>
+            <span>{current.code.toUpperCase()}</span>
+            <span style={{ fontSize: 9, color: 'var(--gold-soft)' }}>▾</span>
+          </button>
+
+          {menuOpen && (
+            <div
+              role="listbox"
+              style={{
+                position: 'absolute',
+                top: 'calc(100% + 8px)',
+                insetInlineEnd: 0,
+                background: 'var(--card)',
+                border: '1px solid var(--line-2)',
+                borderRadius: 14,
+                padding: 6,
+                minWidth: 172,
+                boxShadow: '0 18px 42px rgba(36,31,25,0.14)',
+                zIndex: 80,
+                animation: 'msh-rise 0.22s ease both',
+              }}
+            >
+              {LANGS.map((l) => (
+                <button
+                  key={l.code}
+                  type="button"
+                  className="lang-item"
+                  onClick={() => {
+                    setLang(l.code as Lang)
+                    setMenuOpen(false)
+                  }}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 11,
+                    border: 0,
+                    background: 'transparent',
+                    font: 'inherit',
+                    fontSize: 14,
+                    fontWeight: 300,
+                    color: 'var(--ink-soft)',
+                    padding: '9px 12px',
+                    borderRadius: 9,
+                    cursor: 'pointer',
+                    textAlign: 'start',
+                  }}
+                >
+                  <span style={{ fontSize: 17, lineHeight: 1 }}>{l.flag}</span>
+                  <span>{l.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
+
+        <a
+          className="btn btn-dark"
+          href={waLink(lang)}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ flexShrink: 0, gap: 9, fontSize: 13, padding: '11px 20px' }}
+        >
+          <WhatsAppIcon size={16} />
+          <span>{t('cta.whatsapp')}</span>
+        </a>
       </div>
     </header>
   )

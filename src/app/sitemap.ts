@@ -1,16 +1,19 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mihrimahsultanhamami.com'
-  
-  // Tek sayfa (single-page) sitedir; bölümler anasayfa içinde anchor olarak yer alır.
-  // Var olmayan alt sayfalara link vermek 404 üretip SEO'ya zarar verdiğinden yalnızca anasayfa listelenir.
   return [
     {
-      url: baseUrl,
+      url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/mihrimah-sultan-tarihi`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
   ]
 }
