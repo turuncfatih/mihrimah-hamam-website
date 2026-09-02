@@ -169,19 +169,15 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
             color: 'rgba(247,244,239,0.42)',
           }}
         >
-          <span style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <span>© {new Date().getFullYear()} Tarihi Mihrimah Sultan Hamamı</span>
-            <span aria-hidden="true">·</span>
-            <a
-              className="lnk-sand"
-              href="https://turuncsoft.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: 'rgba(247,244,239,0.55)' }}
-            >
-              Turunc Soft
-            </a>
-          </span>
+          <a
+            className="lnk-sand"
+            href="https://turuncsoft.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'inherit' }}
+          >
+            © {new Date().getFullYear()} TURUNÇ SOFTWARE
+          </a>
           <span style={{ marginInlineStart: 'auto' }}>{t('footer.rights')}</span>
         </div>
       </div>
