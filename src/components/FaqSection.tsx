@@ -71,6 +71,9 @@ export function FaqSection() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit,minmax(390px,1fr))',
           gap: 16,
+          // Kapalı kartlar sorunun yüksekliği kadar dursun; aksi hâlde satırdaki
+          // en uzun soruya göre gerilip boş kutu gibi görünüyorlar.
+          alignItems: 'start',
         }}
       >
         {/* Dil değişince liste yeniden kurulsun ki açık/kapalı durum tutarlı kalsın. */}

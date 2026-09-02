@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   applicationName: 'Tarihi Mihrimah Sultan Hamamı',
   category: 'Health & Beauty',
   alternates: { canonical: '/' },
+  // Google Search Console doğrulama kodu geldiğinde buraya eklenecek:
+  // verification: { google: 'kod' },
   robots: {
     index: true,
     follow: true,

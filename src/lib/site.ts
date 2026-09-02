@@ -59,7 +59,10 @@ export const photoSrc = (i: number) =>
 export const HERO_IMAGE = '/images/hamam-photos/image00015.jpeg'
 export const HISTORY_HERO_IMAGE = '/images/hamam-photos/image00016.jpeg'
 export const ENTRANCE_IMAGE = '/images/about/giris.webp'
-export const OG_IMAGE = '/images/hamam-photos/image00016.jpeg'
+/** Sosyal paylaşım kartı için 1200x630 kırpılmış görsel. */
+export const OG_IMAGE = '/images/og.jpg'
+/** Yapısal veride kullanılan yüksek çözünürlüklü mekân görseli. */
+export const SCHEMA_IMAGE = '/images/hamam-photos/image00016.jpeg'
 
 const WA_MESSAGES: Record<string, string> = {
   tr: 'Merhaba, hamam paketleri hakkında bilgi almak istiyorum.',

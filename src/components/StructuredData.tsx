@@ -1,4 +1,4 @@
-import { ADDRESS, CONTACT, OG_IMAGE, SITE_URL } from '@/lib/site'
+import { ADDRESS, CONTACT, SCHEMA_IMAGE, SITE_URL } from '@/lib/site'
 import { faqsTr } from '@/lib/content'
 
 const postalAddress = {
@@ -25,7 +25,7 @@ const businessSchema = {
   description:
     "Mimar Sinan'ın 16. yüzyılda inşa ettiği Edirnekapı'daki otantik Osmanlı hamamı.",
   url: SITE_URL,
-  image: `${SITE_URL}${OG_IMAGE}`,
+  image: `${SITE_URL}${SCHEMA_IMAGE}`,
   telephone: CONTACT.phone,
   email: CONTACT.email,
   priceRange: '600–1600 TRY',

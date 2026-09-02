@@ -11,6 +11,7 @@ import {
   HISTORY_HERO_IMAGE,
   HOURS,
   OG_IMAGE,
+  SCHEMA_IMAGE,
   SITE_URL,
   photoSrc,
   waLink,
@@ -57,7 +58,14 @@ export const metadata: Metadata = {
     description:
       "Kanuni'nin kızı Mihrimah Sultan, Mimar Sinan'la kurduğu ortaklık ve dört buçuk asırdır çalışan Edirnekapı hamamının hikâyesi.",
     url: `${SITE_URL}${PATH}`,
-    images: [{ url: OG_IMAGE }],
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Tarihi Mihrimah Sultan Hamamı'nın camekân bölümü",
+      },
+    ],
   },
 }
 
@@ -96,7 +104,7 @@ function Schema() {
     description:
       "Mihrimah Sultan'ın hayatı, Mimar Sinan ortaklığı, Edirnekapı Külliyesi, Osmanlı hamam kültürü ve hamamın bugüne uzanan tarihi.",
     inLanguage: 'tr',
-    image: `${SITE_URL}${OG_IMAGE}`,
+    image: `${SITE_URL}${SCHEMA_IMAGE}`,
     author: { '@type': 'Organization', name: 'Tarihi Mihrimah Sultan Hamamı' },
     publisher: { '@type': 'Organization', name: 'Tarihi Mihrimah Sultan Hamamı' },
     about: [
