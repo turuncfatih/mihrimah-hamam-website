@@ -53,9 +53,18 @@ export const PHOTOS: ReadonlyArray<{ file: string; alt: string }> = [
   { file: 'image00039', alt: 'iç mekân görünümü 8' },
 ]
 
-/** Fotoğrafların orijinal ölçüsü; tüm hamam kareleri aynı boyutta. */
+/** Galerideki tüm kareler aynı en boy oranında (4:3) gösterilir. */
 export const PHOTO_WIDTH = 1008
 export const PHOTO_HEIGHT = 756
+
+/**
+ * Bazı orijinal fotoğraflar 1008 yerine 1428 piksel genişliğinde çekildi
+ * (oran hep 4:3). srcSet'in tarayıcıya doğru genişliği bildirmesi için.
+ */
+const FULL_WIDTH_OVERRIDES: Record<string, number> = {
+  image00005: 1428,
+  image00022: 1428,
+}
 
 export const photoSrc = (i: number) => hamamPhoto(PHOTOS[i].file)
 export const photoSrcSet = (i: number) => hamamPhotoSrcSet(PHOTOS[i].file)
@@ -63,16 +72,24 @@ export const photoSrcSet = (i: number) => hamamPhotoSrcSet(PHOTOS[i].file)
 export const hamamPhoto = (file: string) => `/images/hamam-photos/${file}.jpeg`
 
 /**
- * 320 / 640 / 1008 piksel genişliğindeki sürümler build öncesinde üretilir;
- * tarayıcı ekran genişliğine göre en küçüğünü indirir.
+ * 320 / 640 / tam boy sürümler build öncesinde üretilir; tarayıcı ekran
+ * genişliğine göre en küçüğünü indirir. Tam boy genişlik dosyaya göre değişir.
  */
 export const hamamPhotoSrcSet = (file: string) => {
   const base = `/images/hamam-photos/${file}`
-  return `${base}-320.jpeg 320w, ${base}-640.jpeg 640w, ${base}.jpeg ${PHOTO_WIDTH}w`
+  const fullWidth = FULL_WIDTH_OVERRIDES[file] ?? PHOTO_WIDTH
+  return `${base}-320.jpeg 320w, ${base}-640.jpeg 640w, ${base}.jpeg ${fullWidth}w`
 }
 
 export const HERO_FILE = 'image00015'
 export const HERO_IMAGE = hamamPhoto(HERO_FILE)
+/** Ana sayfa hero'sundaki geçişli slaytların sırası. */
+export const HERO_SLIDES: ReadonlyArray<{ file: string; alt: string }> = [
+  { file: 'image00015', alt: 'Hamamın ahşap kamekan katından görünüm' },
+  { file: 'image00008', alt: 'Kamekan tavanının ahşap işçiliği' },
+  { file: 'image00016', alt: 'Kamekanın giriş holü ve oturma alanı' },
+  { file: 'image00005', alt: 'Kamekan soyunma dolapları ve vitraylı kapılar' },
+]
 export const HISTORY_HERO_FILE = 'image00016'
 export const HISTORY_HERO_IMAGE = hamamPhoto(HISTORY_HERO_FILE)
 export const ENTRANCE_IMAGE = '/images/about/giris.webp'

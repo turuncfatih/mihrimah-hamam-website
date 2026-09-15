@@ -318,6 +318,9 @@ details[data-faq] > summary > span:last-child {
   .msh-rise {
     animation: none;
   }
+  .msh-rail {
+    overflow-x: auto;
+  }
 }
 
 /* --- Mobil düzen -------------------------------------------------- */

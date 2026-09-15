@@ -1,11 +1,40 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
-import { HERO_FILE, HERO_IMAGE, hamamPhotoSrcSet, waLink } from '@/lib/site'
+import { HERO_SLIDES, hamamPhoto, hamamPhotoSrcSet, waLink } from '@/lib/site'
 import { WhatsAppIcon } from './icons'
+
+/** Her kare yaklaşık bu kadar ekranda kalır (ms). */
+const SLIDE_DURATION_MS = 6000
+/** Kareler arası yumuşak geçiş süresi (ms). */
+const FADE_DURATION_MS = 1400
 
 export function HeroSection() {
   const { t, lang } = useI18n()
+  const [active, setActive] = useState(0)
+  // İlk boyamayı yavaşlatmamak için ilk kare dışındakiler mount sonrasında eklenir.
+  const [showAllSlides, setShowAllSlides] = useState(false)
+  const [autoplay, setAutoplay] = useState(false)
+
+  useEffect(() => {
+    setShowAllSlides(true)
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setAutoplay(!mq.matches)
+    const onChange = (e: MediaQueryListEvent) => setAutoplay(!e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (!autoplay || HERO_SLIDES.length <= 1) return
+    const id = setInterval(() => {
+      // Sekme arka plandayken ilerleme durur.
+      if (document.hidden) return
+      setActive((i) => (i + 1) % HERO_SLIDES.length)
+    }, SLIDE_DURATION_MS)
+    return () => clearInterval(id)
+  }, [autoplay])
 
   return (
     <>
@@ -20,28 +49,40 @@ export function HeroSection() {
           background: 'var(--dark)',
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={HERO_IMAGE}
-          srcSet={hamamPhotoSrcSet(HERO_FILE)}
-          sizes="100vw"
-          decoding="async"
-          alt="Tarihi Mihrimah Sultan Hamamı iç mekânından bir görünüm"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: 0.9,
-          }}
-        />
+        {HERO_SLIDES.map((slide, i) => {
+          if (i > 0 && !showAllSlides) return null
+          const isFirst = i === 0
+          const isActive = i === active
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={slide.file}
+              src={hamamPhoto(slide.file)}
+              srcSet={hamamPhotoSrcSet(slide.file)}
+              sizes="100vw"
+              decoding="async"
+              loading="eager"
+              fetchPriority={isFirst ? 'high' : undefined}
+              alt={isFirst ? 'Tarihi Mihrimah Sultan Hamamı iç mekânından bir görünüm' : ''}
+              aria-hidden={isFirst ? undefined : true}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                opacity: isActive ? 1 : 0,
+                transition: `opacity ${FADE_DURATION_MS}ms ease`,
+              }}
+            />
+          )
+        })}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(180deg,rgba(20,17,14,0.55) 0%,rgba(20,17,14,0.42) 40%,rgba(20,17,14,0.88) 100%),linear-gradient(100deg,rgba(20,17,14,0.62) 0%,rgba(20,17,14,0.18) 62%,rgba(20,17,14,0) 100%)',
+              'linear-gradient(180deg,rgba(20,17,14,0.42) 0%,rgba(20,17,14,0.26) 42%,rgba(20,17,14,0.85) 100%),linear-gradient(100deg,rgba(20,17,14,0.55) 0%,rgba(20,17,14,0.12) 60%,rgba(20,17,14,0) 100%)',
           }}
         />
         <div
