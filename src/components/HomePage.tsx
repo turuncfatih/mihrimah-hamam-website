@@ -8,7 +8,7 @@ import { ReviewsSection } from '@/components/ReviewsSection'
 import { VisitSection } from '@/components/VisitSection'
 import { FaqSection } from '@/components/FaqSection'
 import { Footer } from '@/components/Footer'
-import { WhatsAppButton } from '@/components/WhatsAppButton'
+import { CallButton } from '@/components/CallButton'
 import { StructuredData } from '@/components/StructuredData'
 
 export function HomePage() {
@@ -27,7 +27,7 @@ export function HomePage() {
         <FaqSection />
       </main>
       <Footer />
-      <WhatsAppButton />
+      <CallButton />
     </div>
   )
 }

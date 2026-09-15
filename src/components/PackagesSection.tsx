@@ -3,7 +3,7 @@
 import { useState, type CSSProperties } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
 import { SEGMENT_HOURS } from '@/lib/i18n'
-import { PRICES, waLink, type Segment } from '@/lib/site'
+import { PRICES, telLink, type Segment } from '@/lib/site'
 import { Reveal } from './Reveal'
 
 const tabStyle = (active: boolean): CSSProperties => ({
@@ -155,9 +155,7 @@ export function PackagesSection() {
           </ul>
           <a
             className="btn btn-outline-dark"
-            href={waLink(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={telLink()}
             style={{
               marginTop: 'auto',
               justifyContent: 'center',
@@ -215,9 +213,7 @@ export function PackagesSection() {
           </ul>
           <a
             className="btn btn-sand"
-            href={waLink(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={telLink()}
             style={{
               marginTop: 'auto',
               justifyContent: 'center',
@@ -256,9 +252,7 @@ export function PackagesSection() {
           </ul>
           <a
             className="btn btn-outline-dark"
-            href={waLink(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={telLink()}
             style={{
               marginTop: 'auto',
               justifyContent: 'center',

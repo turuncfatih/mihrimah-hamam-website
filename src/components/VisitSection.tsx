@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
-import { ADDRESS, CONTACT, HOURS, MAPS_EMBED, MAPS_LINK, waLink } from '@/lib/site'
-import { PinIcon, WhatsAppIcon } from './icons'
+import { ADDRESS, CONTACT, HOURS, MAPS_EMBED, MAPS_LINK, telLink } from '@/lib/site'
+import { PinIcon, PhoneIcon } from './icons'
 import { Reveal } from './Reveal'
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
@@ -36,7 +36,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
 }
 
 export function VisitSection() {
-  const { t, lang } = useI18n()
+  const { t } = useI18n()
 
   return (
     <section
@@ -116,14 +116,12 @@ export function VisitSection() {
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 32 }}>
               <a
-                className="btn btn-wa"
-                href={waLink(lang)}
-                target="_blank"
-                rel="noopener noreferrer"
+                className="btn btn-call"
+                href={telLink()}
                 style={{ fontSize: 13.5, padding: '14px 26px' }}
               >
-                <WhatsAppIcon size={17} />
-                <span>{t('cta.whatsapp2')}</span>
+                <PhoneIcon size={17} />
+                <span>{t('cta.call2')}</span>
               </a>
               <a
                 className="btn btn-outline-dark"

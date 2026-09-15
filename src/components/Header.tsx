@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
 import { LANGS } from '@/lib/i18n'
 import { localePath } from '@/lib/seo'
-import { waLink } from '@/lib/site'
-import { WhatsAppIcon } from './icons'
+import { telLink } from '@/lib/site'
+import { PhoneIcon } from './icons'
 
 const SECTIONS = ['ritual', 'packages', 'gallery', 'visit'] as const
 const SECTION_KEYS: Record<(typeof SECTIONS)[number], string> = {
@@ -195,13 +195,11 @@ export function Header({ onHome = true }: { onHome?: boolean }) {
 
         <a
           className="btn btn-dark"
-          href={waLink(lang)}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={telLink()}
           style={{ flexShrink: 0, gap: 9, fontSize: 13, padding: '11px 20px' }}
         >
-          <WhatsAppIcon size={16} />
-          <span>{t('cta.whatsapp')}</span>
+          <PhoneIcon size={16} />
+          <span>{t('cta.call')}</span>
         </a>
       </div>
     </header>

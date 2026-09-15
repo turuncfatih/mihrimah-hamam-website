@@ -2,7 +2,7 @@
 
 import { useI18n } from '@/contexts/I18nContext'
 import { getFaqs } from '@/lib/content'
-import { waLink } from '@/lib/site'
+import { telLink } from '@/lib/site'
 import { FaqList } from './FaqList'
 import { Reveal } from './Reveal'
 
@@ -49,9 +49,7 @@ export function FaqSection() {
           </h2>
         </div>
         <a
-          href={waLink(lang)}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={telLink()}
           className="lnk"
           style={{
             fontSize: 14,

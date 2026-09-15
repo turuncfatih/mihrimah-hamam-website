@@ -29,8 +29,6 @@
   --cream: #fbf8f3;
   --dark: #241f19;
   --darker: #1b1815;
-  --wa: #25d366;
-  --wa-dark: #1f7a44;
 }
 
 html {
@@ -138,7 +136,7 @@ details summary::-webkit-details-marker {
   color: var(--bg);
 }
 .btn-dark:hover {
-  background: var(--wa-dark);
+  background: var(--gold);
   color: #fff;
 }
 
@@ -175,32 +173,33 @@ details summary::-webkit-details-marker {
   color: var(--bg);
 }
 
-.btn-wa {
-  background: var(--wa-dark);
+.btn-call {
+  background: var(--dark);
+  color: var(--bg);
+}
+.btn-call:hover {
+  background: var(--gold);
   color: #fff;
 }
-.btn-wa:hover {
-  background: var(--dark);
-}
 
-.btn-wa-ghost {
+.btn-call-ghost {
   border: 1px solid rgba(247, 244, 239, 0.28);
   color: #f7f4ef;
 }
-.btn-wa-ghost:hover {
-  background: var(--wa);
-  border-color: var(--wa);
-  color: #0b2a17;
+.btn-call-ghost:hover {
+  background: var(--sand);
+  border-color: var(--sand);
+  color: var(--dark);
 }
 
 .msh-fab {
-  background: var(--wa);
-  color: #0b2a17;
+  background: var(--dark);
+  color: var(--sand);
   box-shadow: 0 14px 34px rgba(20, 17, 14, 0.28);
 }
 .msh-fab:hover {
-  background: var(--wa-dark);
-  color: #fff;
+  background: var(--gold);
+  color: var(--cream);
 }
 
 .icon-btn {

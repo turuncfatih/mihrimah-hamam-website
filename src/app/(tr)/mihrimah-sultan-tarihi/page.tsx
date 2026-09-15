@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { WhatsAppButton } from '@/components/WhatsAppButton'
+import { CallButton } from '@/components/CallButton'
 import { FaqList } from '@/components/FaqList'
-import { WhatsAppIcon } from '@/components/icons'
+import { PhoneIcon } from '@/components/icons'
 import {
   ADDRESS,
   ENTRANCE_IMAGE,
@@ -19,7 +19,7 @@ import {
   hamamPhotoSrcSet,
   photoSrc,
   photoSrcSet,
-  waLink,
+  telLink,
 } from '@/lib/site'
 import {
   KUNYE,
@@ -948,18 +948,16 @@ export default function HistoryPage() {
               >
                 Erkekler bölümü her gün {HOURS.men.replace(' — ', '–')}, kadınlar bölümü{' '}
                 {HOURS.women.replace(' — ', '–')} arası açık. Randevu şart değil; yoğun saatlerde
-                WhatsApp&apos;tan haber vermek bekleme süresini kısaltır.
+                önceden arayıp haber vermek bekleme süresini kısaltır.
               </p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
                 <a
-                  className="btn btn-wa"
-                  href={waLink('tr')}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  className="btn btn-call"
+                  href={telLink()}
                   style={{ fontSize: 13.5, padding: '14px 26px' }}
                 >
-                  <WhatsAppIcon size={17} />
-                  <span>WhatsApp&apos;tan yer ayır</span>
+                  <PhoneIcon size={17} />
+                  <span>Arayarak yer ayır</span>
                 </a>
                 <Link
                   className="btn btn-outline-dark"
@@ -1071,10 +1069,8 @@ export default function HistoryPage() {
                 </span>
               </div>
               <a
-                className="btn btn-wa"
-                href={waLink('tr')}
-                target="_blank"
-                rel="noopener noreferrer"
+                className="btn btn-call"
+                href={telLink()}
                 style={{
                   marginTop: 18,
                   justifyContent: 'center',
@@ -1083,8 +1079,8 @@ export default function HistoryPage() {
                   padding: '12px 18px',
                 }}
               >
-                <WhatsAppIcon size={16} />
-                <span>WhatsApp&apos;tan yaz</span>
+                <PhoneIcon size={16} />
+                <span>Hemen ara</span>
               </a>
             </div>
           </aside>
@@ -1092,7 +1088,7 @@ export default function HistoryPage() {
       </div>
 
       <Footer onHome={false} />
-      <WhatsAppButton />
+      <CallButton />
     </div>
   )
 }

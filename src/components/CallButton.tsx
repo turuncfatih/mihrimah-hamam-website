@@ -1,19 +1,17 @@
 'use client'
 
 import { useI18n } from '@/contexts/I18nContext'
-import { waLink } from '@/lib/site'
-import { WhatsAppIcon } from './icons'
+import { telLink } from '@/lib/site'
+import { PhoneIcon } from './icons'
 
-export function WhatsAppButton() {
-  const { t, lang } = useI18n()
+export function CallButton() {
+  const { t } = useI18n()
 
   return (
     <a
       className="btn msh-fab"
-      href={waLink(lang)}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="WhatsApp"
+      href={telLink()}
+      aria-label={t('cta.callfab')}
       style={{
         position: 'fixed',
         bottom: 24,
@@ -26,8 +24,8 @@ export function WhatsAppButton() {
         padding: '14px 22px',
       }}
     >
-      <WhatsAppIcon size={21} />
-      <span>{t('cta.wafab')}</span>
+      <PhoneIcon size={21} />
+      <span>{t('cta.callfab')}</span>
     </a>
   )
 }

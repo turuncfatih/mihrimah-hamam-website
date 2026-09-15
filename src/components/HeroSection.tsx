@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
-import { HERO_SLIDES, hamamPhoto, hamamPhotoSrcSet, waLink } from '@/lib/site'
-import { WhatsAppIcon } from './icons'
+import { HERO_SLIDES, hamamPhoto, hamamPhotoSrcSet, telLink } from '@/lib/site'
+import { PhoneIcon } from './icons'
 
 /** Her kare yaklaşık bu kadar ekranda kalır (ms). */
 const SLIDE_DURATION_MS = 6000
@@ -11,7 +11,7 @@ const SLIDE_DURATION_MS = 6000
 const FADE_DURATION_MS = 1400
 
 export function HeroSection() {
-  const { t, lang } = useI18n()
+  const { t } = useI18n()
   const [active, setActive] = useState(0)
   // İlk boyamayı yavaşlatmamak için ilk kare dışındakiler mount sonrasında eklenir.
   const [showAllSlides, setShowAllSlides] = useState(false)
@@ -138,12 +138,10 @@ export function HeroSection() {
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 38 }}>
             <a
               className="btn btn-cream"
-              href={waLink(lang)}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={telLink()}
               style={{ fontSize: 14, padding: '16px 30px' }}
             >
-              <WhatsAppIcon size={17} fill="#1F7A44" />
+              <PhoneIcon size={17} />
               <span>{t('cta.reserve')}</span>
             </a>
             <a

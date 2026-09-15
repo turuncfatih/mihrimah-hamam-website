@@ -4,9 +4,8 @@
 export const SITE_URL = 'https://mihrimahsultanhamami.com'
 
 export const CONTACT = {
-  whatsapp: '902125215459',
-  phone: '+902125215459',
-  phoneDisplay: '0212 521 54 59',
+  phone: '+902125230487',
+  phoneDisplay: '0212 523 04 87',
   email: 'info@mihrimahsultanhamami.com',
 } as const
 
@@ -98,15 +97,7 @@ export const OG_IMAGE = '/images/og.jpg'
 /** Yapısal veride kullanılan yüksek çözünürlüklü mekân görseli. */
 export const SCHEMA_IMAGE = '/images/hamam-photos/image00016.jpeg'
 
-const WA_MESSAGES: Record<string, string> = {
-  tr: 'Merhaba, hamam paketleri hakkında bilgi almak istiyorum.',
-  en: 'Hello, I would like information about your hammam packages.',
-  ar: 'مرحباً، أريد معلومات عن باقات الحمّام.',
-  ru: 'Здравствуйте, хочу узнать о пакетах хаммама.',
-  es: 'Hola, quisiera información sobre los paquetes del hammam.',
-}
-
-export function waLink(lang: string = 'tr') {
-  const text = WA_MESSAGES[lang] || WA_MESSAGES.tr
-  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`
+/** Tüm arama bağlantıları bu yardımcıdan geçer. */
+export function telLink() {
+  return `tel:${CONTACT.phone}`
 }

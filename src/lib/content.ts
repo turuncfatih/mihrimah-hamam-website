@@ -31,7 +31,7 @@ export const getReviews = (lang: Lang): Review[] => REVIEWS[lang] ?? reviewsEn
 
 const FAQS: Record<Lang, Faq[]> = {
   tr: [
-    { q: 'Randevu almam gerekiyor mu?', a: "Gerekmiyor, doğrudan gelebilirsiniz. Hafta sonu ve akşam saatleri yoğun olduğu için WhatsApp'tan haber vermeniz bekleme süresini kısaltır." },
+    { q: 'Randevu almam gerekiyor mu?', a: 'Gerekmiyor, doğrudan gelebilirsiniz. Hafta sonu ve akşam saatleri yoğun olduğu için önceden arayıp haber vermeniz bekleme süresini kısaltır.' },
     { q: 'Kadınlar ve erkekler aynı yerde mi yıkanıyor?', a: 'Hayır. Hamamın kadın ve erkek bölümleri tamamen ayrıdır; kadın bölümünde kadın personel hizmet verir.' },
     { q: 'Yanımda ne getirmeliyim?', a: 'Peştamal, havlu ve terlik bizde. İsterseniz kendi bikini veya mayonuzu, yanınıza da yedek iç çamaşırı getirebilirsiniz.' },
     { q: 'Ne kadar sürüyor?', a: 'Süre seçtiğiniz pakete ve sizin temponuza göre değişir. İşlemler bittikten sonra acele etmeden dinlenebilirsiniz.' },
@@ -39,7 +39,7 @@ const FAQS: Record<Lang, Faq[]> = {
     { q: 'Nasıl ulaşırım?', a: "Karagümrük, Fevzipaşa Caddesi No:333. Vezneciler–Edirnekapı otobüsleri ve T4 tramvay hattı yakınında; Ayasofya'dan taksiyle yaklaşık 15 dakika." },
   ],
   en: [
-    { q: 'Do I need a reservation?', a: 'No, you can simply walk in. Evenings and weekends are busier, so a quick WhatsApp message shortens your wait.' },
+    { q: 'Do I need a reservation?', a: 'No, you can simply walk in. Evenings and weekends are busier, so a quick call ahead shortens your wait.' },
     { q: 'Do men and women bathe together?', a: "No. The men's and women's sections are entirely separate, and female attendants serve the women's section." },
     { q: 'What should I bring?', a: 'Peştamal, towel and slippers are provided. Bring a bikini or swimsuit if you prefer, plus spare underwear.' },
     { q: 'How long does it take?', a: 'It depends on the package you choose and your own pace. Once the treatments are done, you can rest without being rushed.' },
@@ -47,7 +47,7 @@ const FAQS: Record<Lang, Faq[]> = {
     { q: 'How do I get there?', a: 'Karagümrük, Fevzipaşa Caddesi No:333 — near the T4 tram line and Edirnekapı buses, about 15 minutes by taxi from Hagia Sophia.' },
   ],
   ar: [
-    { q: 'هل أحتاج إلى حجز مسبق؟', a: 'لا، يمكنك القدوم مباشرة. المساء ونهاية الأسبوع أكثر ازدحاماً، لذا رسالة واتساب قصيرة تقلّل وقت الانتظار.' },
+    { q: 'هل أحتاج إلى حجز مسبق؟', a: 'لا، يمكنك القدوم مباشرة. المساء ونهاية الأسبوع أكثر ازدحاماً، لذا اتصال قصير مسبقاً يقلّل وقت الانتظار.' },
     { q: 'هل يستحمّ الرجال والنساء معاً؟', a: 'لا. قسمُ الرجال وقسمُ النساء منفصلان تماماً، ويخدم قسمَ النساء عاملات.' },
     { q: 'ماذا أحضر معي؟', a: 'الفوطة والمنشفة والشبشب متوفرة عندنا. يمكنك إحضار مايوه أو بكيني إن رغبت، مع ملابس داخلية احتياطية.' },
     { q: 'كم يستغرق الوقت؟', a: 'يختلف ذلك حسب الباقة التي تختارها وإيقاعك الخاص. وبعد انتهاء الخدمات يمكنك الاسترخاء دون استعجال.' },
@@ -55,7 +55,7 @@ const FAQS: Record<Lang, Faq[]> = {
     { q: 'كيف أصل إليكم؟', a: 'أدرنة كابي، شارع فوزي باشا رقم ٣٣ — قريب من خط الترام T4 وحافلات أدرنة كابي، ونحو ١٥ دقيقة بالتاكسي من آيا صوفيا.' },
   ],
   ru: [
-    { q: 'Нужна ли запись?', a: 'Нет, можно прийти без записи. Вечера и выходные загруженнее — короткое сообщение в WhatsApp сократит ожидание.' },
+    { q: 'Нужна ли запись?', a: 'Нет, можно прийти без записи. Вечера и выходные загруженнее, короткий звонок заранее сократит ожидание.' },
     { q: 'Мужчины и женщины моются вместе?', a: 'Нет. Мужское и женское отделения полностью раздельные, в женском работают женщины-мастера.' },
     { q: 'Что взять с собой?', a: 'Пештемаль, полотенце и тапочки мы выдаём. При желании возьмите купальник и сменное белье.' },
     { q: 'Сколько это занимает?', a: 'Зависит от выбранного пакета и вашего темпа. После процедур можно спокойно отдохнуть, никто не торопит.' },
@@ -63,7 +63,7 @@ const FAQS: Record<Lang, Faq[]> = {
     { q: 'Как добраться?', a: 'Эдирнекапы, Fevzi Paşa Caddesi 33 — рядом трамвай T4 и автобусы; от Айя-Софии около 15 минут на такси.' },
   ],
   es: [
-    { q: '¿Necesito reserva?', a: 'No, puedes venir directamente. Las tardes y los fines de semana hay más gente: un mensaje por WhatsApp reduce la espera.' },
+    { q: '¿Necesito reserva?', a: 'No, puedes venir directamente. Las tardes y los fines de semana hay más gente: una llamada previa reduce la espera.' },
     { q: '¿Hombres y mujeres se bañan juntos?', a: 'No. Las secciones de hombres y mujeres están completamente separadas; en la de mujeres atiende personal femenino.' },
     { q: '¿Qué debo llevar?', a: 'Peştamal, toalla y chanclas están incluidos. Trae bikini o bañador si lo prefieres, y ropa interior de recambio.' },
     { q: '¿Cuánto dura?', a: 'Depende del paquete que elijas y de tu propio ritmo. Al terminar, puedes descansar sin prisas.' },

@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
 import { localePath } from '@/lib/seo'
-import { ADDRESS, CONTACT, HOURS, MAPS_LINK, waLink } from '@/lib/site'
-import { WhatsAppIcon } from './icons'
+import { ADDRESS, CONTACT, HOURS, MAPS_LINK, telLink } from '@/lib/site'
+import { PhoneIcon } from './icons'
 
 const colTitle = {
   fontSize: 10,
@@ -84,14 +84,12 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
             {t('footer.tag')}
           </p>
           <a
-            className="btn btn-wa-ghost"
-            href={waLink(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
+            className="btn btn-call-ghost"
+            href={telLink()}
             style={{ alignSelf: 'flex-start', gap: 9, fontSize: 13, padding: '12px 22px' }}
           >
-            <WhatsAppIcon size={16} />
-            <span>{t('cta.whatsapp')}</span>
+            <PhoneIcon size={16} />
+            <span>{t('cta.call')}</span>
           </a>
         </div>
 
@@ -156,7 +154,7 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
         </div>
       </div>
 
-      {/* Sabit WhatsApp butonu sağ altta durduğu için künye satırına fazladan alt boşluk. */}
+      {/* Sabit arama butonu sağ altta durduğu için künye satırına fazladan alt boşluk. */}
       <div className="msh-shell" style={{ paddingBottom: 'clamp(64px,6vw,84px)' }}>
         <div
           style={{
