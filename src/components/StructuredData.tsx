@@ -49,7 +49,7 @@ const businessSchema = {
   ],
   makesOffer: [
     { '@type': 'Offer', name: 'Standart Hamam', price: '600', priceCurrency: 'TRY' },
-    { '@type': 'Offer', name: 'Geleneksel Hamam Paketi', price: '900', priceCurrency: 'TRY' },
+    { '@type': 'Offer', name: 'Geleneksel Hamam Paketi', price: '1000', priceCurrency: 'TRY' },
     { '@type': 'Offer', name: 'Mihrimah Sultan Paketi', price: '1600', priceCurrency: 'TRY' },
   ],
   mainEntity: faqsTr.map((f) => ({

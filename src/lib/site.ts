@@ -34,7 +34,7 @@ export const HOURS = {
 
 /** Bölüme göre paket fiyatları: [Standart, Geleneksel, Mihrimah Sultan] */
 export const PRICES = {
-  men: [600, 900, 1600],
+  men: [600, 1000, 1600],
   women: [600, 1000, 1600],
 } as const
 
