@@ -245,7 +245,7 @@ export function PackagesSection() {
             </p>
           </div>
           <ul style={{ ...listStyle, color: 'var(--body-soft)' }}>
-            <li>{t('f.oil')}</li>
+            <li>{t(seg === 'women' ? 'f.oilCoffee' : 'f.oil')}</li>
             <li>{t('f.scrub2')}</li>
             <li>{t('f.foam2')}</li>
             <li>{t('f.bath3')}</li>
