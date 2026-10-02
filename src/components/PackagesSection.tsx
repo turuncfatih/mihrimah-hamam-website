@@ -167,7 +167,46 @@ export function PackagesSection() {
           </a>
         </div>
 
-        {/* Geleneksel — öne çıkan */}
+        {/* Geleneksel */}
+        <div
+          className="card-outline"
+          style={{
+            padding: '36px 32px 34px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 22,
+          }}
+        >
+          <div>
+            <h3 style={{ fontSize: 22, fontWeight: 400 }}>{t('pkg2.name')}</h3>
+            <p style={{ marginTop: 14, fontSize: 34, fontWeight: 200, color: 'var(--ink)' }}>
+              {prices[1]}
+              <span style={{ fontSize: '0.42em', letterSpacing: '0.1em', marginInlineStart: 6 }}>
+                TL
+              </span>
+            </p>
+          </div>
+          <ul style={{ ...listStyle, color: 'var(--body-soft)' }}>
+            <li>{t('f.scrub')}</li>
+            <li>{t('f.foam')}</li>
+            <li>{t('f.bath2')}</li>
+            <li>{t('f.kit2')}</li>
+          </ul>
+          <a
+            className="btn btn-outline-dark"
+            href={telLink()}
+            style={{
+              marginTop: 'auto',
+              justifyContent: 'center',
+              fontSize: 13.5,
+              padding: '13px 20px',
+            }}
+          >
+            {t('cta.ask2')}
+          </a>
+        </div>
+
+        {/* Mihrimah Sultan — öne çıkan */}
         <div
           style={{
             border: '1px solid var(--dark)',
@@ -197,19 +236,19 @@ export function PackagesSection() {
             {t('pkg.popular')}
           </span>
           <div>
-            <h3 style={{ fontSize: 22, fontWeight: 400 }}>{t('pkg2.name')}</h3>
+            <h3 style={{ fontSize: 22, fontWeight: 400 }}>{t('pkg3.name')}</h3>
             <p style={{ marginTop: 14, fontSize: 34, fontWeight: 200 }}>
-              {prices[1]}
+              {prices[2]}
               <span style={{ fontSize: '0.42em', letterSpacing: '0.1em', marginInlineStart: 6 }}>
                 TL
               </span>
             </p>
           </div>
           <ul style={{ ...listStyle, color: 'rgba(247,244,239,0.82)' }}>
-            <li>{t('f.scrub')}</li>
-            <li>{t('f.foam')}</li>
-            <li>{t('f.bath2')}</li>
-            <li>{t('f.kit2')}</li>
+            <li>{t(seg === 'women' ? 'f.oilCoffee' : 'f.oil')}</li>
+            <li>{t('f.scrub2')}</li>
+            <li>{t('f.foam2')}</li>
+            <li>{t('f.bath3')}</li>
           </ul>
           <a
             className="btn btn-sand"
@@ -222,45 +261,6 @@ export function PackagesSection() {
             }}
           >
             {t('cta.reserve2')}
-          </a>
-        </div>
-
-        {/* Mihrimah Sultan */}
-        <div
-          className="card-outline"
-          style={{
-            padding: '36px 32px 34px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 22,
-          }}
-        >
-          <div>
-            <h3 style={{ fontSize: 22, fontWeight: 400 }}>{t('pkg3.name')}</h3>
-            <p style={{ marginTop: 14, fontSize: 34, fontWeight: 200, color: 'var(--ink)' }}>
-              {prices[2]}
-              <span style={{ fontSize: '0.42em', letterSpacing: '0.1em', marginInlineStart: 6 }}>
-                TL
-              </span>
-            </p>
-          </div>
-          <ul style={{ ...listStyle, color: 'var(--body-soft)' }}>
-            <li>{t(seg === 'women' ? 'f.oilCoffee' : 'f.oil')}</li>
-            <li>{t('f.scrub2')}</li>
-            <li>{t('f.foam2')}</li>
-            <li>{t('f.bath3')}</li>
-          </ul>
-          <a
-            className="btn btn-outline-dark"
-            href={telLink()}
-            style={{
-              marginTop: 'auto',
-              justifyContent: 'center',
-              fontSize: 13.5,
-              padding: '13px 20px',
-            }}
-          >
-            {t('cta.ask2')}
           </a>
         </div>
       </Reveal>
